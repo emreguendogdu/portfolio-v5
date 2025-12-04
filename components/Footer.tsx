@@ -10,7 +10,8 @@ export default function Footer() {
         className="flex flex-col gap-10 items-center justify-center"
       >
         <h2 className="text-center">
-          Let’s Turn your Website <br /> into your strongest asset.
+          Let's turn your website into <br />
+          your strongest business asset.
         </h2>
 
         <CtaButton
@@ -24,10 +25,18 @@ export default function Footer() {
         <p>© 2025 - All Rights Reserved</p>
 
         <div className="flex items-center gap-5">
-          <Link href="/">LinkedIn</Link>
-          <Link href="/">Dribbble</Link>
-          <Link href="/">Github</Link>
-          <Link href="/">Instagram</Link>
+          <Link href="https://linkedin.com/in/emregnd/" target="_blank">
+            LinkedIn
+          </Link>
+          <Link href="https://dribbble.com/emregnd/" target="_blank">
+            Dribbble
+          </Link>
+          <Link href="https://github.com/emreguendogdu/" target="_blank">
+            Github
+          </Link>
+          <Link href="https://instagram.com/emregnd/" target="_blank">
+            Instagram
+          </Link>
         </div>
       </div>
     </footer>

@@ -1,4 +1,6 @@
+import Link from "next/link";
 import CtaButton from "./ui/CtaButton";
+import Image from "next/image";
 
 export default function Hero() {
   return (
@@ -6,32 +8,47 @@ export default function Hero() {
       id="hero"
       className="relative w-full pt-[150px] sm:pt-[200px] h-svh flex flex-col items-center justify-between pb-10"
     >
-      <div id="text-wrapper" className="flex flex-col gap-2 sm:gap-8">
-        <div className="flex items-center gap-4 sm:gap-8">
-          <h2 className="h0">Web</h2>
-          <h2 className="h0">Design</h2>
-          <h2 className="h0">&</h2>
+      <div
+        id="text-wrapper"
+        className="gap-2 sm:gap-8 grid grid-cols-12 grid-rows-3"
+      >
+        <h1 className="sr-only">Web Design & Development Partner</h1>
+
+        <div className="flex items-center gap-4 sm:gap-8" aria-hidden>
+          <span className="h0">Web</span>
+          <span className="h0">Design</span>
+          <span className="h0">&</span>
         </div>
-        <div className="w-full flex items-center gap-8">
-          <div className="flex-1" aria-hidden />
-          <h2 className="h0">Development</h2>
+        <div className="h0 row-start-2 col-start-1 sm:col-start-3" aria-hidden>
+          Development
         </div>
 
-        <div className="w-full flex items-center gap-8">
-          <div className="flex-1" aria-hidden />
-          <h2 className="h0">Partner</h2>
-          <div className="flex-1" aria-hidden />
-        </div>
+        <span
+          className="h0 row-start-3 col-start-5 col-end-6 sm:col-start-6"
+          aria-hidden
+        >
+          Partner
+        </span>
       </div>
       {/* Image */}
-      <div className="bg-[#D9D9D9] w-[50%] h-auto aspect-[1/1.3] sm:w-[304px] sm:h-[388px] absolute top-[60%] left-0 -translate-y-1/2 -z-10"></div>
+      <div className="bg-[#D9D9D9] w-[50%] h-auto aspect-[1/1.3] sm:w-[304px] sm:h-[388px] absolute top-[60%] left-0 -translate-y-1/2 -z-10">
+        <Image
+          src="/images/pp.webp"
+          alt="Personal image"
+          priority
+          fill
+          className="object-center object-cover"
+        />
+
+        <div className="absolute inset-0 z-10 bg-radial from-transparent via-transparent to-background" />
+      </div>
 
       <p>
-        Passionate about crafting <br /> unforgettable experiences.
+        I craft unforgettable, <br /> performance-driven web experiences.
       </p>
 
       <div className="w-full flex items-center justify-between gap-4">
-        <p>hello@emregnd.com</p>
+        <Link href="mailto:hello@emregnd.com">hello@emregnd.com</Link>
         <CtaButton
           text="Inquiries"
           type="small"

@@ -5,13 +5,13 @@ import ProjectElement from "./ProjectElement";
 const HeaderContent = () => {
   return (
     <div className="flex justify-between items-center w-full col-span-full">
-      <div className="flex-1 grid grid-cols-6 grid-rows-2 gap-y-2 sm:gap-y-5">
+      <div className="sm:flex-1 grid grid-cols-6 grid-rows-2 gap-y-2 sm:gap-y-5">
         <h2 className="h0">Selected</h2>
-        <h2 className="h0 row-start-2 col-start-2">Works</h2>
+        <h2 className="h0 row-start-2 col-start-3">Works</h2>
       </div>
 
       <div>
-        <h2 className="h0">(7)</h2>
+        <h2 className="h0">({projects.length})</h2>
       </div>
     </div>
   );
@@ -30,8 +30,9 @@ export default function SelectedWorks() {
       {projects.map((project, i) => (
         <Fragment key={`sw__${i}`}>
           <ProjectElement
-            type={bigIndices.has(i) ? "big" : "small"}
             project={project}
+            type={bigIndices.has(i) ? "big" : "small"}
+            isOdd={i % 2 === 1}
           />
         </Fragment>
       ))}

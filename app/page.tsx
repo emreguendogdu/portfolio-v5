@@ -8,7 +8,7 @@ export default function Home() {
   return (
     <>
       <ReactLenis root />
-      <main className="px-4 sm:px-10 py-5">
+      <main className="px-4 sm:px-10 py-5 flex flex-col gap-20">
         <Header />
         <Hero />
         <SelectedWorks />

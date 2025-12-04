@@ -27,21 +27,23 @@ export const projects: Project[] = [
     imageSource: "/images/projects/atlas.webp",
     videoUrl: null,
   },
-  {
-    slug: "aelora-luxury",
-    title: "Aelora Luxury",
-    shortDescription: "Luxury Hotel Website",
-    work: "Design",
-    url: null,
-    imageSource: "/images/projects/aelora-luxury.webp",
-    videoUrl: null,
-  },
+
   {
     slug: "shortfy",
     title: "Shortfy",
     shortDescription: "SAAS Website",
     work: "Development",
     url: "https://shortfy.io/",
+    imageSource: "/images/projects/shortfy.webp",
+    videoUrl: null,
+  },
+
+  {
+    slug: "aelora-luxury",
+    title: "Aelora Luxury",
+    shortDescription: "Luxury Hotel Website",
+    work: "Design",
+    url: null,
     imageSource: "/images/projects/aelora-luxury.webp",
     videoUrl: null,
   },
