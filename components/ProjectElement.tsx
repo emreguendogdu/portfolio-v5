@@ -22,8 +22,6 @@ const ProjectElement = ({
           "relative bg-black/10 w-full rounded-lg",
           type === "small" ? "aspect-square h-auto" : "aspect-[1/1.3] h-full"
         )}
-        data-project-image="true"
-        data-project-has-url={!!project.url}
       >
         <Image
           className="object-cover pointer-events-none"
