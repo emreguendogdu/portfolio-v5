@@ -3,7 +3,7 @@ import Link from "next/link";
 
 export default function Header() {
   return (
-    <header className="absolute top-0 left-0 right-0 px-4 sm:px-10 py-5 w-full flex justify-between items-center">
+    <header className="absolute top-0 left-0 right-0 px-4 sm:px-10 py-6 w-full flex justify-between items-center">
       <p>
         Booking projects <br /> for— Dec ‘25
       </p>
