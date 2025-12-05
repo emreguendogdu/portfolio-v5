@@ -21,10 +21,10 @@ export default function Footer() {
         />
       </div>
 
-      <div className="flex items-center justify-between w-full">
+      <div className="w-full flex items-center justify-between">
         <p>© 2025 - All Rights Reserved</p>
 
-        <div className="flex items-center gap-2">
+        <div className="grid grid-cols-2 gap-y-2 gap-x-4 sm:flex sm:items-center">
           <Link href="https://linkedin.com/in/emregnd/" target="_blank">
             LinkedIn
           </Link>

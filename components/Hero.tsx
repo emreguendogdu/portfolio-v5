@@ -40,7 +40,7 @@ export default function Hero() {
 
       {/* Image & Text Container */}
       <div className="relative w-full">
-        <div className="absolute left-0 top-0 sm:-translate-y-full flex gap-10 sm:gap-20">
+        <div className="absolute left-0 top-0 -translate-y-full flex gap-10 sm:gap-20">
           {/* Image */}
           <div className="relative bg-[#D9D9D9] w-1/2 aspect-[1/1.3] sm:w-[304px] sm:h-[388px]">
             <Image
