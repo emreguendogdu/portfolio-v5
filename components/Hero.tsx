@@ -6,46 +6,59 @@ export default function Hero() {
   return (
     <section
       id="hero"
-      className="relative w-full pt-[150px] sm:pt-[200px] h-svh flex flex-col items-center justify-between pb-10"
+      className="relative w-full pt-[150px] sm:pt-[200px] h-svh flex flex-col items-center justify-between py-5 sm:pb-10"
     >
-      <div
-        id="text-wrapper"
-        className="gap-2 sm:gap-8 grid grid-cols-12 grid-rows-3"
-      >
+      <div className="relative grid grid-cols-12 grid-rows-4 gap-2 sm:gap-6 z-10">
         <h1 className="sr-only">Web Design & Development Partner</h1>
 
-        <div className="flex items-center gap-4 sm:gap-8" aria-hidden>
+        <div
+          className="flex items-center gap-6 sm:gap-10 lg:gap-20"
+          aria-hidden
+        >
           <span className="h0">Web</span>
           <span className="h0">Design</span>
           <span className="h0">&</span>
         </div>
-        <div className="h0 row-start-2 col-start-1 sm:col-start-3" aria-hidden>
+
+        <div
+          className="relative h0 row-start-2 col-start-1 sm:col-start-2 lg:col-start-3 z-10"
+          aria-hidden
+        >
           Development
         </div>
 
-        <span
-          className="h0 row-start-3 col-start-5 col-end-6 sm:col-start-6"
+        <div
+          className="w-full row-start-3 col-span-full sm:col-start-6 flex"
           aria-hidden
         >
-          Partner
-        </span>
-      </div>
-      {/* Image */}
-      <div className="bg-[#D9D9D9] w-[50%] h-auto aspect-[1/1.3] sm:w-[304px] sm:h-[388px] absolute top-[60%] left-0 -translate-y-1/2 -z-10">
-        <Image
-          src="/images/pp.webp"
-          alt="Personal image"
-          priority
-          fill
-          className="object-center object-cover"
-        />
-
-        <div className="absolute inset-0 z-10 bg-radial from-transparent via-transparent to-background" />
+          <span className="flex-1" aria-hidden />
+          <span className="h0" aria-hidden>
+            Partner
+          </span>
+        </div>
       </div>
 
-      <p>
-        I craft unforgettable, <br /> performance-driven web experiences.
-      </p>
+      {/* Image & Text Container */}
+      <div className="relative w-full">
+        <div className="absolute left-0 top-0 sm:-translate-y-full flex gap-10 sm:gap-20">
+          {/* Image */}
+          <div className="relative bg-[#D9D9D9] w-1/2 aspect-[1/1.3] sm:w-[304px] sm:h-[388px]">
+            <Image
+              src="/images/pp.webp"
+              alt="Personal image"
+              priority
+              fill
+              className="object-center object-cover"
+            />
+
+            <div className="absolute inset-0 z-10 bg-radial from-transparent via-transparent to-background" />
+          </div>
+
+          <p className="flex items-end">
+            I craft unforgettable, <br /> performance-driven web experiences.
+          </p>
+        </div>
+      </div>
 
       <div className="w-full flex items-center justify-between gap-4">
         <Link href="mailto:hello@emregnd.com">hello@emregnd.com</Link>

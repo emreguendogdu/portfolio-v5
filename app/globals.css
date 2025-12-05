@@ -61,7 +61,7 @@ body {
   .h0 {
     font-family: var(--font-neue-montreal), sans-serif;
     font-weight: 500;
-    font-size: clamp(2rem, 10.5vw + 1rem, 9.75rem);
+    font-size: clamp(2rem, 10.32vw + 1rem, 22.75rem);
     line-height: 0.7;
   }
 

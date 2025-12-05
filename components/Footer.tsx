@@ -24,7 +24,7 @@ export default function Footer() {
       <div className="flex items-center justify-between w-full">
         <p>© 2025 - All Rights Reserved</p>
 
-        <div className="flex items-center gap-5">
+        <div className="flex items-center gap-2">
           <Link href="https://linkedin.com/in/emregnd/" target="_blank">
             LinkedIn
           </Link>
