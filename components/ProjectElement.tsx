@@ -85,7 +85,7 @@ const ProjectElement = ({
   return (
     <article
       className={cn(
-        "flex flex-col gap-5 col-span-11 sm:col-span-6",
+        "flex flex-col gap-5 col-span-10 sm:col-span-6",
         isOdd ? "col-start-2 sm:col-start-auto" : null
       )}
     >
@@ -96,6 +96,13 @@ const ProjectElement = ({
         onMouseLeave={() => setHovered(false)}
         className={!!project.url ? "cursor-pointer" : "cursor-default"}
         target="_blank"
+        onClick={(e) => {
+          // TODO: Remove this and add conditional render for Link element.
+          if (!project.url) {
+            e.preventDefault();
+            e.stopPropagation();
+          }
+        }}
       >
         <div
           className={cn(

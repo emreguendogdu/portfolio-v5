@@ -4,14 +4,16 @@ import ProjectElement from "./ProjectElement";
 
 const HeaderContent = () => {
   return (
-    <div className="flex justify-between items-center w-full col-span-full">
-      <div className="sm:flex-1 grid grid-cols-6 grid-rows-2 gap-y-2 sm:gap-y-5">
+    <div className="flex flex-col sm:flex-row sm:justify-between sm:items-end w-full col-span-full">
+      <div className="w-full sm:flex-1 grid grid-cols-12 grid-rows-2 gap-y-2 sm:gap-y-5">
         <h2 className="h0">Selected</h2>
-        <h2 className="h0 row-start-2 col-start-3">Works</h2>
+        <h2 className="h0 row-start-2 col-start-4 sm:col-start-3">Works</h2>
       </div>
 
-      <div>
-        <h2 className="h0">({projects.length})</h2>
+      <div className="relative">
+        <h2 className="h0 -translate-y-full sm:translate-y-0">
+          ({projects.length})
+        </h2>
       </div>
     </div>
   );
@@ -23,7 +25,7 @@ export default function SelectedWorks() {
   return (
     <section
       id="selected-works"
-      className="w-full grid grid-cols-12 min-h-svh gap-y-20 gap-x-10"
+      className="w-full grid grid-cols-12 min-h-svh gap-y-10 sm:gap-y-20 gap-x-10"
     >
       <HeaderContent />
 
