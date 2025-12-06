@@ -85,8 +85,8 @@ const ProjectElement = ({
   return (
     <article
       className={cn(
-        "flex flex-col gap-6 col-span-10 sm:col-span-6",
-        isOdd ? "col-start-2 sm:col-start-auto" : null
+        "relative flex flex-col gap-6 w-full col-span-full sm:col-span-6",
+        isOdd ? "col-start-2 col-span-11 sm:col-start-auto" : null
       )}
     >
       {/* Image Wrapper */}
@@ -124,7 +124,7 @@ const ProjectElement = ({
           />
 
           {/* Hover Info Element */}
-          <div className="absolute inset-0 z-10 hidden sm:flex flex-col justify-center items-center text-white gap-10 px-10 py-6 pointer-events-none">
+          <div className="absolute inset-0 z-10 hidden sm:flex flex-col justify-center items-center text-white gap-10 px-10 py-4 pointer-events-none">
             {/* Video */}
             <div
               className="video w-[90%] h-1/2 bg-red-500 origin-bottom rounded-lg mt-16"

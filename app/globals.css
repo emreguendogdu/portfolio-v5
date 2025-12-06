@@ -28,7 +28,6 @@ body {
 
   font-size: clamp(0.75rem, 1vw + 0.5rem, 1rem);
   line-height: 110%;
-  overflow-x: hidden;
 }
 
 @layer base {
@@ -61,7 +60,7 @@ body {
   .h0 {
     font-family: var(--font-neue-montreal), sans-serif;
     font-weight: 500;
-    font-size: clamp(2rem, 10.32vw + 1rem, 22.75rem);
+    font-size: clamp(2rem, 10.8vw + 0.5rem, 909rem);
     line-height: 0.7;
   }
 
