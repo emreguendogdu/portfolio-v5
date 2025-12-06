@@ -12,7 +12,7 @@ export default function Header() {
         href="/"
         className="capitalize absolute top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2 text-center"
       >
-        Emre <br /> Gundogdu
+        Emre <br className="inline sm:hidden" /> Gundogdu
       </Link>
 
       <div className="text-right">

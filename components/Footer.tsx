@@ -1,9 +1,10 @@
 import Link from "next/link";
 import CtaButton from "./ui/CtaButton";
+import Header from "./Header";
 
 export default function Footer() {
   return (
-    <footer className="w-full h-svh flex flex-col justify-between">
+    <footer className="relative w-full h-svh flex flex-col gap-6 justify-between">
       <div aria-hidden />
       <div
         id="footer-center"
