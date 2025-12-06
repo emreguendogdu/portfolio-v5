@@ -25,7 +25,7 @@ export default function SelectedWorks() {
   return (
     <section
       id="selected-works"
-      className="relative w-full grid grid-cols-12 gap-y-10 sm:gap-y-20 sm:gap-x-10"
+      className="relative w-full grid grid-cols-12 gap-y-10 sm:gap-y-20 sm:gap-x-5"
     >
       <HeaderContent />
 
