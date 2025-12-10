@@ -23,7 +23,7 @@ export default function Footer() {
       </div>
 
       <div className="w-full flex flex-col sm:flex-row items-center justify-between gap-4 sm:gap-6">
-        <p>© 2025 - All Rights Reserved</p>
+        <p>© 2025 - Emre Gundogdu. All Rights Reserved</p>
 
         <div className="flex items-center gap-2 sm:gap-4 justify-between sm:justify-start w-full sm:w-auto">
           <Link href="https://linkedin.com/in/emregnd/" target="_blank">
