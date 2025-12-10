@@ -4,7 +4,7 @@ import ProjectElement from "./ProjectElement";
 
 const HeaderContent = () => {
   return (
-    <div className="flex flex-col sm:flex-row sm:justify-between sm:items-end w-full col-span-full">
+    <div className="flex flex-row justify-between gap-sm items-end w-full col-span-full flex-wrap">
       <div className="w-full sm:flex-1 grid grid-cols-12 grid-rows-2 gap-y-2 sm:gap-y-5">
         <h2 className="h0">Selected</h2>
         <h2 className="h0 row-start-2 col-start-4 sm:col-start-3">Works</h2>
