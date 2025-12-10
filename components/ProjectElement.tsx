@@ -85,8 +85,8 @@ const ProjectElement = ({
   return (
     <article
       className={cn(
-        "relative flex flex-col gap-6 w-full col-span-full sm:col-span-6",
-        isOdd ? "col-start-2 col-span-11 sm:col-start-auto" : null
+        "relative flex flex-col gap-6 w-full col-span-11 sm:col-span-6",
+        isOdd ? "col-start-2 sm:col-start-auto" : null
       )}
     >
       {/* Image Wrapper */}
