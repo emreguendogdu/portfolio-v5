@@ -29,16 +29,6 @@ const ProjectElement = ({
   const [hovered, setHovered] = useState(false);
 
   useGSAP(() => {
-    gsap.set(hoverVideoElementRef.current, {
-      scale: 0,
-    });
-
-    gsap.set(hoverArrowRef.current, {
-      scale: 0,
-    });
-  });
-
-  useGSAP(() => {
     if (hovered) {
       if (project.url) {
         gsap.to(projectImageRef.current, {
@@ -127,12 +117,12 @@ const ProjectElement = ({
           <div className="absolute inset-0 z-10 hidden sm:flex flex-col justify-center items-center text-white gap-10 px-10 py-4 pointer-events-none">
             {/* Video */}
             <div
-              className="video w-[90%] h-1/2 bg-red-500 origin-bottom rounded-lg mt-16"
+              className="video w-[90%] h-1/2 bg-red-500 origin-bottom rounded-lg mt-16 scale-0 will-change-transform"
               ref={hoverVideoElementRef}
             />
             {/* Arrow */}
             <div
-              className="flex items-center justify-center bg-white text-black w-16 h-16 rounded-full origin-center"
+              className="flex items-center justify-center bg-white text-black w-16 h-16 rounded-full origin-center scale-0 will-change-transform"
               ref={hoverArrowRef}
             >
               <ArrowRightIcon className="w-6 h-6" />
