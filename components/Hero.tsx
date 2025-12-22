@@ -6,13 +6,13 @@ export default function Hero() {
   return (
     <section
       id="hero"
-      className="relative w-full pt-[100px] sm:pt-[140px] asm:pt-[150px] min-h-svh flex flex-col items-center justify-between gap-10 py-4 pb-6 sm:pb-10 overflow-hidden"
+      className="relative w-full min-h-svh flex flex-col pt-[15svh] items-center justify-between gap-10 py-4 pb-6 sm:pb-10 overflow-hidden"
     >
       <div className="relative grid grid-cols-12 grid-rows-4 gap-2 sm:gap-6 z-10">
         <h1 className="sr-only">Web Design & Development Partner</h1>
 
         <div
-          className="flex w-full col-span-full items-center justify-between sm:justify-start gap-2 lg:gap-10 xl:gap-20"
+          className="flex w-full col-span-full items-center justify-between sm:justify-start gap-2 sm:gap-10 xl:gap-20"
           aria-hidden
         >
           <span className="h0">Web</span>
@@ -21,17 +21,17 @@ export default function Hero() {
         </div>
 
         <div
-          className="relative h0 row-start-2 col-start-1 xl:col-start-3 z-10"
+          className="relative h0 row-start-2 col-start-1 sm:col-start-3 z-10"
           aria-hidden
         >
           Development
         </div>
 
         <div
-          className="w-full row-start-3 col-span-full flex justify-end"
+          className="w-full row-start-3 sm:col-start-7 col-span-9"
           aria-hidden
         >
-          <span className="ml-auto mr-12 h0" aria-hidden>
+          <span className="h0" aria-hidden>
             Partner
           </span>
         </div>
@@ -53,20 +53,25 @@ export default function Hero() {
             <div className="absolute inset-0 z-10 bg-radial from-transparent via-transparent to-background" />
           </div>
 
-          <p className="flex items-end whitespace-nowrap">
-            I craft unforgettable, <br /> performance-driven <br /> web
-            experiences.
+          <p className="flex items-end xl:ml-10 max-w-[250px] sm:max-w-[300px] xl:max-w-[300px]">
+            Building web experiences where high-end aesthetics meet raw,
+            conversion-focused engineering.
           </p>
         </div>
       </div>
 
-      <div className="w-full flex items-center justify-between gap-4">
-        <Link href="mailto:hello@emregnd.com">hello@emregnd.com</Link>
-        <CtaButton
-          text="Inquiries"
-          type="small"
-          href="https://cal.com/emregnd/inquiry"
-        />
+      <div className="w-full flex items-end justify-between gap-4">
+        <p>Scroll</p>
+        <div className="flex flex-col gap-5">
+          <p className="text-right">
+            Booking For — <br /> January 2026
+          </p>
+          <CtaButton
+            text="Schedule a Call"
+            type="small"
+            href="https://cal.com/emregnd/inquiry"
+          />
+        </div>
       </div>
     </section>
   );

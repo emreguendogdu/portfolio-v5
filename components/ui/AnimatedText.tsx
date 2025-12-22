@@ -1,0 +1,129 @@
+"use client";
+
+import React, { useRef, ReactElement, ReactNode } from "react";
+
+import gsap from "gsap";
+import { SplitText } from "gsap/SplitText";
+import { useGSAP } from "@gsap/react";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+interface Props {
+  children: ReactNode;
+  animateOnScroll?: boolean;
+  delay?: number;
+  className?: string;
+}
+
+gsap.registerPlugin(SplitText, ScrollTrigger);
+
+export default function AnimatedText({
+  children,
+  animateOnScroll = true,
+  delay = 0,
+  className,
+}: Props) {
+  const containerRef = useRef<HTMLElement | null>(null);
+  const elementRefs = useRef<Element[]>([]);
+  const splitRefs = useRef<SplitText[]>([]);
+  const lines = useRef<Element[]>([]);
+
+  useGSAP(
+    () => {
+      if (!containerRef.current) return;
+
+      splitRefs.current = [];
+      lines.current = [];
+      elementRefs.current = [];
+
+      let elements: Element[] = [];
+      if (containerRef.current.hasAttribute("data-copy-wrapper")) {
+        elements = Array.from(containerRef.current.children) as Element[];
+      } else {
+        elements = [containerRef.current];
+      }
+
+      elements.forEach((element) => {
+        elementRefs.current.push(element);
+
+        const split = SplitText.create(element, {
+          type: "words, lines",
+          mask: "lines",
+          linesClass: "line++",
+          lineThreshold: 0.1,
+        });
+
+        splitRefs.current.push(split);
+
+        const computedStyle = window.getComputedStyle(element);
+        const textIndent = computedStyle.textIndent;
+
+        if (textIndent && textIndent !== "0px") {
+          if (split.lines && split.lines.length > 0) {
+            const firstLine = split.lines[0] as HTMLElement;
+            if (firstLine) {
+              firstLine.style.paddingLeft = textIndent;
+            }
+          }
+          const htmlElement = element as HTMLElement;
+          htmlElement.style.textIndent = "0";
+        }
+
+        if (split.lines) {
+          lines.current.push(...split.lines);
+        }
+      });
+
+      gsap.set(lines.current, { y: "100%" });
+
+      const animationProps = {
+        y: "0%",
+        duration: 1,
+        stagger: 0.1,
+        ease: "power4.out",
+        delay: delay,
+      };
+
+      if (animateOnScroll) {
+        gsap.to(lines.current, {
+          ...animationProps,
+          scrollTrigger: {
+            trigger: containerRef.current,
+            start: "top 75%",
+            once: true,
+            markers: true,
+          },
+        });
+      } else {
+        gsap.to(lines.current, animationProps);
+      }
+
+      return () => {
+        splitRefs.current.forEach((split) => {
+          if (split) {
+            split.revert();
+          }
+        });
+      };
+    },
+    { scope: containerRef, dependencies: [animateOnScroll, delay] }
+  );
+
+  if (React.Children.count(children) === 1) {
+    const child = React.Children.only(children);
+    if (React.isValidElement(child)) {
+      return React.cloneElement(child as ReactElement<any>, {
+        ref: containerRef,
+      });
+    }
+  }
+
+  return (
+    <div
+      ref={containerRef as React.RefObject<HTMLDivElement>}
+      data-copy-wrapper="true"
+      className={className}
+    >
+      {children}
+    </div>
+  );
+}
