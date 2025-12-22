@@ -5,22 +5,22 @@ import AnimatedText from "./ui/AnimatedText";
 
 const HeaderContent = () => {
   return (
-    <div className="flex flex-row justify-between gap-sm items-end w-full col-span-full flex-wrap">
+    <div className="relative flex flex-row justify-between gap-sm items-end w-full col-span-full flex-wrap">
       <div className="w-full sm:flex-1 grid grid-cols-12 grid-rows-2 gap-y-2 sm:gap-y-5">
         <h2 className="h0 col-span-full">
           <AnimatedText>
             <span>Selected</span>
           </AnimatedText>
         </h2>
-        <h2 className="h0 row-start-2 col-start-4 sm:col-start-3 col-span-8 sm:col-span-9">
+        <h2 className="h0 row-start-2 col-start-3 col-span-9">
           <AnimatedText>
             <span>Works</span>
           </AnimatedText>
         </h2>
       </div>
 
-      <div className="relative">
-        <h2 className="h0 -translate-y-full sm:translate-y-0">
+      <div className="absolute right-0 bottom-0">
+        <h2 className="h0 leading-[1.2] tracking-normal">
           <AnimatedText>
             <span>({projects.length})</span>
           </AnimatedText>
