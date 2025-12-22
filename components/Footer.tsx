@@ -1,6 +1,7 @@
 import Link from "next/link";
 import CtaButton from "./ui/CtaButton";
 import Header from "./Header";
+import AnimatedText from "./ui/AnimatedText";
 
 export default function Footer() {
   return (
@@ -10,10 +11,12 @@ export default function Footer() {
         id="footer-center"
         className="flex flex-col gap-10 items-center justify-center"
       >
-        <h2 className="text-center">
-          Let's turn your website into <br />
-          your strongest business asset.
-        </h2>
+        <AnimatedText>
+          <h2 className="text-center">
+            Let's turn your website into <br />
+            your strongest business asset.
+          </h2>
+        </AnimatedText>
 
         <CtaButton
           text="Schedule a Call"

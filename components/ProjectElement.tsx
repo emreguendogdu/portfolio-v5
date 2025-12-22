@@ -8,6 +8,7 @@ import Image from "next/image";
 import { useRef, useState } from "react";
 import ArrowRightIcon from "./ui/ArrowRightIcon";
 import Link from "next/link";
+import AnimatedText from "./ui/AnimatedText";
 
 gsap.defaults({
   ease: "easeInOut",
@@ -133,13 +134,19 @@ const ProjectElement = ({
 
       <div className="w-full flex justify-between gap-6">
         <div className="flex flex-col gap-2">
-          <h3 className="capitalize">{project.title}</h3>
-          <p>{project.work}</p>
+          <AnimatedText>
+            <h3 className="capitalize">{project.title}</h3>
+          </AnimatedText>
+          <AnimatedText>
+            <p>{project.work}</p>
+          </AnimatedText>
         </div>
 
-        <p className="opacity-50 w-1/3 text-right">
-          {project.shortDescription}
-        </p>
+        <AnimatedText>
+          <p className="opacity-50 w-1/3 text-right">
+            {project.shortDescription}
+          </p>
+        </AnimatedText>
       </div>
     </article>
   );
