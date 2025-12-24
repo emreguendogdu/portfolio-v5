@@ -73,11 +73,12 @@ export default function AnimatedText({
         }
       });
 
-      gsap.set(lines.current, { y: "100%" });
+      gsap.set(lines.current, { y: "200%", rotate: "4deg" });
 
       const animationProps = {
         y: "0%",
-        duration: 1,
+        rotate: 0,
+        duration: 1.2,
         stagger: 0.1,
         ease: "power4.out",
         delay: delay,

@@ -1,6 +1,9 @@
-import Link from "next/link";
+import AnimatedText from "./ui/AnimatedText";
 import CtaButton from "./ui/CtaButton";
 import Image from "next/image";
+
+const animStart = 0.2,
+  animStagger = 0.1;
 
 export default function Hero() {
   return (
@@ -15,25 +18,44 @@ export default function Hero() {
           className="flex w-full col-span-full items-center justify-between sm:justify-start gap-2 sm:gap-10 xl:gap-20"
           aria-hidden
         >
-          <span className="h0">Web</span>
-          <span className="h0">Design</span>
-          <span className="h0">&</span>
+          <AnimatedText animateOnScroll={false} delay={animStart}>
+            <span className="h0">Web</span>
+          </AnimatedText>
+          <AnimatedText animateOnScroll={false} delay={animStart + animStagger}>
+            <span className="h0">Design</span>
+          </AnimatedText>
+          <AnimatedText
+            animateOnScroll={false}
+            delay={animStart + animStagger * 2}
+          >
+            <span className="h0">&</span>
+          </AnimatedText>
         </div>
 
         <div
-          className="relative h0 row-start-2 col-start-1 sm:col-start-3 z-10"
+          className="relative h0 row-start-2 col-start-1 col-span-full sm:col-span-9 sm:col-start-3 z-10"
           aria-hidden
         >
-          Development
+          <AnimatedText
+            animateOnScroll={false}
+            delay={animStart + animStagger * 3}
+          >
+            <span>Development</span>
+          </AnimatedText>
         </div>
 
         <div
           className="w-full row-start-3 sm:col-start-7 col-span-9"
           aria-hidden
         >
-          <span className="h0" aria-hidden>
-            Partner
-          </span>
+          <AnimatedText
+            animateOnScroll={false}
+            delay={animStart + animStagger * 4}
+          >
+            <span className="h0" aria-hidden>
+              Partner
+            </span>
+          </AnimatedText>
         </div>
       </div>
 
@@ -53,24 +75,44 @@ export default function Hero() {
             <div className="absolute inset-0 z-10 bg-radial from-transparent via-transparent to-background" />
           </div>
 
-          <p className="flex items-end xl:ml-10 max-w-[250px] sm:max-w-[300px] xl:max-w-[300px]">
-            Building web experiences where high-end aesthetics meet raw,
-            conversion-focused engineering.
-          </p>
+          <AnimatedText
+            animateOnScroll={false}
+            delay={animStart + animStagger * 5}
+          >
+            <p className="flex items-end xl:ml-10 max-w-[250px] sm:max-w-[300px] xl:max-w-[300px]">
+              Building web experiences where high-end aesthetics meet raw,
+              conversion-focused engineering.
+            </p>
+          </AnimatedText>
         </div>
       </div>
 
       <div className="w-full flex items-end justify-between gap-4">
-        <p>Scroll</p>
+        <AnimatedText
+          animateOnScroll={false}
+          delay={animStart + animStagger * 6}
+        >
+          <p>Scroll</p>
+        </AnimatedText>
         <div className="flex flex-col gap-5">
-          <p className="text-right">
-            Booking For — <br /> January 2026
-          </p>
-          <CtaButton
-            text="Schedule a Call"
-            type="small"
-            href="https://cal.com/emregnd/inquiry"
-          />
+          <AnimatedText
+            animateOnScroll={false}
+            delay={animStart + animStagger * 6}
+          >
+            <p className="text-right">
+              Booking For — <br /> January 2026
+            </p>
+          </AnimatedText>
+          <AnimatedText
+            animateOnScroll={false}
+            delay={animStart + (animStagger / 2) * 6}
+          >
+            <CtaButton
+              text="Schedule a Call"
+              type="small"
+              href="https://cal.com/emregnd/inquiry"
+            />
+          </AnimatedText>
         </div>
       </div>
     </section>
