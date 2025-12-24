@@ -27,10 +27,12 @@ export default function CtaButton({
   text,
   href,
   type,
+  className,
 }: {
   text: string;
   href: string;
   type: "small" | "big";
+  className?: string;
 }) {
   if (!type) {
     throw new Error("Define type for the CTA button.");
@@ -212,11 +214,13 @@ export default function CtaButton({
     <Link
       ref={containerRef}
       href={href}
+      target="_blank"
       className={cn(
         "flex items-center bg-foreground text-background rounded-lg relative overflow-hidden",
         type === "big"
           ? "h3 leading-[1] uppercase px-10 py-5 gap-5"
-          : "px-5 pr-2.5 py-2.5 gap-2.5"
+          : "px-5 pr-2.5 py-2.5 gap-2.5",
+        className
       )}
     >
       <div
