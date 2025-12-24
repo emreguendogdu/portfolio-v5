@@ -1,0 +1,19 @@
+@import "tailwindcss";
+
+@theme inline {
+  --font-display: var(--font-bosch);
+}
+
+body {
+  font-family: var(--font-default), sans-serif;
+}
+
+@media screen and (max-width: 768px) {
+  body {
+    font-size: 0.875rem;
+  }
+}
+
+.font-outline {
+  -webkit-text-stroke: 1.5px black;
+}
