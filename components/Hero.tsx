@@ -33,7 +33,7 @@ export default function Hero() {
         </div>
 
         <div
-          className="relative h0 row-start-2 col-start-1 col-span-full sm:col-span-9 sm:col-start-3 z-10"
+          className="relative h0 row-start-2 col-start-1 col-span-full sm:col-span-10 sm:col-start-3 z-10"
           aria-hidden
         >
           <AnimatedText
@@ -61,9 +61,9 @@ export default function Hero() {
 
       {/* Image & Text Container */}
       <div className="relative w-full">
-        <div className="absolute left-0 right-0 top-0 -translate-y-[80%] sm:-translate-y-full flex gap-6 md:gap-16 lg:gap-48 xl:gap-80">
+        <div className="absolute left-0 right-0 top-0 -translate-y-[70%] sm:-translate-y-full flex flex-col sm:flex-row gap-6 md:gap-16 lg:gap-48 xl:gap-80">
           {/* Image */}
-          <div className="relative bg-[#D9D9D9] w-2/3 aspect-[1/1.3] max-w-[240px] sm:max-w-none sm:w-[304px] sm:h-[388px]">
+          <div className="relative bg-[#D9D9D9] w-2/3 aspect-[1/1.3] max-w-[145px] sm:max-w-none sm:w-[304px] sm:h-[388px]">
             <Image
               src="/images/pp.webp"
               alt="Personal image"
@@ -75,15 +75,18 @@ export default function Hero() {
             <div className="absolute inset-0 z-10 bg-radial from-transparent via-transparent to-background" />
           </div>
 
-          <AnimatedText
-            animateOnScroll={false}
-            delay={animStart + animStagger * 5}
-          >
-            <p className="flex items-end xl:ml-10 max-w-[250px] sm:max-w-[300px] xl:max-w-[300px]">
-              Building web experiences where high-end aesthetics meet raw,
-              conversion-focused engineering.
-            </p>
-          </AnimatedText>
+          <div className="flex items-end justify-end">
+            <AnimatedText
+              animateOnScroll={false}
+              delay={animStart + animStagger * 5}
+            >
+              <p className="xl:ml-10 max-w-auto sm:max-w-[300px] xl:max-w-[300px]">
+                Building web experiences where <br /> high-end aesthetics meet
+                raw, <br />
+                conversion-focused engineering.
+              </p>
+            </AnimatedText>
+          </div>
         </div>
       </div>
 
@@ -94,7 +97,7 @@ export default function Hero() {
         >
           <p>Scroll</p>
         </AnimatedText>
-        <div className="flex flex-col gap-5">
+        <div className="flex flex-col gap-2.5 sm:gap-5">
           <AnimatedText
             animateOnScroll={false}
             delay={animStart + animStagger * 6}

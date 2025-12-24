@@ -127,14 +127,15 @@ export default function HeaderLogo() {
     <Link
       ref={containerRef}
       href="/"
-      className="capitalize absolute top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2 text-center overflow-hidden"
+      className="capitalize absolute top-0 sm:top-1/2 sm:-translate-y-1/2 sm:left-1/2 sm:-translate-x-1/2 text-center overflow-hidden"
     >
-      <div className="relative">
-        <div ref={textTopRef}>
-          Emre <br className="inline sm:hidden" /> Gundogdu
+      <span className="sr-only">Emre Gundogdu</span>
+      <div className="relative" aria-hidden="true">
+        <div ref={textTopRef} className="whitespace-nowrap">
+          Emre Gundogdu
         </div>
-        <div ref={textBottomRef} className="absolute inset-0">
-          Emre <br className="inline sm:hidden" /> Gundogdu
+        <div ref={textBottomRef} className="absolute inset-0 whitespace-nowrap">
+          Emre Gundogdu
         </div>
       </div>
     </Link>

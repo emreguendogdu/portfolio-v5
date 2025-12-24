@@ -60,4 +60,9 @@ body {
   .h3 {
     font-size: clamp(1.25rem, 3vw + 0.5rem, 2rem);
   }
+
+  .line-mask {
+    overflow-y: clip !important;
+    overflow-x: visible !important;
+  }
 }
