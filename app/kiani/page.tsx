@@ -8,8 +8,13 @@ import CardImage1 from "@/public/work/kiani/images/tst-1.png";
 import CardImage2 from "@/public/work/kiani/images/tst-2.png";
 import { useGSAP } from "@gsap/react";
 import { SplitText } from "gsap/SplitText";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import Philosophy from "@/components/works/kiani/components/sections/Philosophy";
+import CTA from "@/components/works/kiani/components/ui/CTA";
+import SomeStays from "@/components/works/kiani/components/sections/SomeStays";
+import RoomsSuites from "@/components/works/kiani/components/sections/RoomsSuites";
 
-gsap.registerPlugin(SplitText);
+gsap.registerPlugin(SplitText, ScrollTrigger);
 
 const Logo = (props: React.SVGProps<SVGSVGElement>) => {
   return (
@@ -38,6 +43,81 @@ const Logo = (props: React.SVGProps<SVGSVGElement>) => {
 };
 
 export default function KianiHomePage() {
+  //   useGSAP(() => {
+  //     const text1Words = SplitText.create(
+  //       "#kiani-home #image-container #text-container #text-1",
+  //       { type: "words", mask: "words" }
+  //     );
+  //     const text2Words = SplitText.create(
+  //       "#kiani-home #image-container #text-container #text-2",
+  //       { type: "words", mask: "words" }
+  //     );
+
+  //     gsap.set(text1Words.words, { yPercent: 100, opacity: 0 });
+  //     gsap.set(text2Words.words, { yPercent: 100, opacity: 0 });
+
+  //     /*     const st = ScrollTrigger.create({
+  //       trigger: "#kiani-home #image-container",
+  //       start: "top top",
+  //       end: `+=${window.innerHeight * 3}px`,
+  //       scrub: 1,
+  //       markers: true,
+  //       pin: true,
+  //       animation: gsap.fromTo(
+  //         "#kiani-home #image-wrapper",
+  //         {
+  //           width: "100%",
+  //           height: "100%",
+  //           left: 0,
+  //         },
+  //         {
+  //           width: "100svw",
+  //           height: "100svh",
+  //           left: "-100px",
+  //         }
+  //       ),
+  //     }); */
+
+  //     const scrollTl = gsap.timeline({
+  //       scrollTrigger: {
+  //         trigger: "#kiani-home #image-container",
+  //         start: "top top",
+  //         end: `+=${window.innerHeight * 5}px`,
+  //         scrub: 0.5,
+  //         markers: true,
+  //         pin: true,
+  //       },
+  //     });
+
+  //     // add animations and labels to the timeline
+  //     scrollTl
+  //       .to(
+  //         "#kiani-home #image-wrapper",
+  //         {
+  //           width: "100svw",
+  //           height: "100svh",
+  //           left: "-100px",
+  //           ease: "none",
+  //         },
+  //         0
+  //       )
+  //       .to(
+  //         text1Words.words,
+  //         { yPercent: 0, opacity: 1, stagger: 0.05, ease: "none" },
+  //         0.25
+  //       )
+  //       .to(
+  //         text1Words.words,
+  //         { yPercent: 0, opacity: 0, stagger: 0, ease: "none" },
+  //         0.5
+  //       )
+  //       .to(
+  //         text2Words.words,
+  //         { yPercent: 0, opacity: 1, stagger: 0.05, ease: "none" },
+  //         0.75
+  //       );
+  //   });
+
   useGSAP(() => {
     const splitTitle = SplitText.create("#kiani-home #title", {
       type: "chars",
@@ -120,158 +200,176 @@ export default function KianiHomePage() {
   });
 
   return (
-    <section
-      id="kiani-home"
-      className="relative h-svh w-full bg-[#F1EFEC] px-5 sm:px-5 pb-5 flex flex-col overflow-hidden"
-    >
-      <Preloader />
-      <header className="relative w-full flex items-center justify-between h-[72px] border-b border-b-black/20 shrink-0 py-5">
-        <Logo className="h-10" />
-        <ul className="hidden lg:flex items-center gap-5 sm:gap-10 [&>li]:uppercase [&>li]:opacity-50 [&>li]:-tracking-[0.02em] [&>li]:whitespace-nowrap h-[72px]">
-          <li>Rooms & Suites</li>
-          <li>SPA & Wellness</li>
-          {/* Border */}
-          <div className="w-px h-[24px] bg-black opacity-20" aria-hidden />
-          <li>Dining</li>
-          <li>Experiences</li>
-          <li>Offers</li>
-        </ul>
+    <main className="relative flex flex-col gap-30 pb-30 bg-[#F1EFEC]">
+      <section
+        id="kiani-home"
+        className="relative min-h-svh w-full bg-[#F1EFEC] px-5 sm:px-5 pb-5 flex flex-col overflow-x-hidden"
+      >
+        <Preloader />
+        <header className="relative w-full flex items-center justify-between h-[72px] border-b border-b-black/20 shrink-0 py-5">
+          <Logo className="h-10" />
+          <ul className="hidden lg:flex items-center gap-5 sm:gap-10 [&>li]:uppercase [&>li]:opacity-50 [&>li]:-tracking-[0.02em] [&>li]:whitespace-nowrap h-[72px]">
+            <li>Rooms & Suites</li>
+            <li>SPA & Wellness</li>
+            {/* Border */}
+            <div className="w-px h-[24px] bg-black opacity-20" aria-hidden />
+            <li>Dining</li>
+            <li>Experiences</li>
+            <li>Offers</li>
+          </ul>
 
-        {/* CTA Button */}
-        <div className="flex items-center gap-5 sm:gap-10">
-          <button className="cursor-pointer flex gap-2.5 items-center lg:hidden">
-            <div className="flex flex-col gap-[5px]" aria-hidden>
-              <div className="w-4 h-px bg-black opacity-50" aria-hidden />
-              <div className="w-4 h-px bg-black opacity-50" aria-hidden />
-            </div>
-            <span className="-tracking-[0.02em] opacity-50 uppercase">
-              Menu
-            </span>
-          </button>
-          <button className="bg-black px-5 py-[10px] flex items-center gap-5 rounded-full cursor-pointer">
-            <span className="uppercase text-white whitespace-nowrap">
-              Book Now
-            </span>
+          {/* CTA Button */}
+          <div className="flex items-center gap-5 sm:gap-10">
+            <button className="cursor-pointer flex gap-2.5 items-center lg:hidden">
+              <div className="flex flex-col gap-[5px]" aria-hidden>
+                <div className="w-4 h-px bg-black opacity-50" aria-hidden />
+                <div className="w-4 h-px bg-black opacity-50" aria-hidden />
+              </div>
+              <span className="-tracking-[0.02em] opacity-50 uppercase">
+                Menu
+              </span>
+            </button>
 
-            <div
-              className="w-auto h-2 aspect-square rounded-full outline outline-white"
-              aria-hidden
-            />
-          </button>
-        </div>
-      </header>
+            <CTA />
+          </div>
+        </header>
 
-      <div className="h-[10svh] shrink-0" aria-hidden />
+        <div className="h-[10svh] shrink-0" aria-hidden />
 
-      <div className="relative flex-1 w-full flex flex-col gap-[5svh] min-h-0">
-        {/* Title */}
-        <div className="flex flex-col items-center gap-2.5 sm:gap-5 shrink-0">
-          {/* Hotel Name & Images Wrapper */}
-          <div className="relative items-center justify-center">
-            {/* Image 1 */}
-            <div className="card-image-wrapper absolute left-0 sm:left-6 2xl:-left-6 top-0 -translate-y-[45%] sm:-translate-y-[55%] rotate-[8deg] w-auto aspect-square h-[120px] 2xl:h-[180px] bg-white flex p-[5px] z-10">
-              {/* Image */}
-              <Image
-                className="w-full h-full object-cover object-center"
-                src={CardImage1}
-                alt="."
-              />
-            </div>
-            {/* Title, Outline */}
-            <h2
-              id="title"
-              className="relative font-display uppercase text-[6rem] tracking-[0.3em] sm:text-[9rem] sm:tracking-[0.5em] lg:text-[11rem] 2xl:text-[20rem] leading-[0.7] z-20 overflow-hidden"
-            >
-              Kiani
-            </h2>
+        <div className="relative flex-1 w-full flex flex-col gap-[5svh] min-h-0">
+          {/* Title */}
+          <div className="flex flex-col items-center gap-2.5 sm:gap-5 shrink-0">
+            {/* Hotel Name & Images Wrapper */}
+            <div className="relative items-center justify-center">
+              {/* Image 1 */}
+              <div className="card-image-wrapper absolute left-0 sm:left-6 2xl:-left-6 top-0 -translate-y-[45%] sm:-translate-y-[55%] rotate-[8deg] w-auto aspect-square h-[120px] 2xl:h-[180px] bg-white flex p-[5px] z-10">
+                {/* Image */}
+                <Image
+                  className="w-full h-full object-cover object-center"
+                  src={CardImage1}
+                  alt="."
+                />
+              </div>
+              {/* Title, Outline */}
+              <h2
+                id="title"
+                className="relative font-display uppercase text-[6rem] tracking-[0.3em] sm:text-[9rem] sm:tracking-[0.5em] lg:text-[11rem] 2xl:text-[20rem] leading-[0.7] z-20 overflow-hidden"
+              >
+                Kiani
+              </h2>
 
-            {/* Title, Fill */}
-            {/*   <h2
+              {/* Title, Fill */}
+              {/*   <h2
               className="absolute top-0 font-display  uppercase text-[6rem] tracking-[0.3em] sm:text-[9rem] sm:tracking-[0.5em] lg:text-[11rem] 2xl:text-[20rem] leading-[0.7] z-0"
               aria-hidden
             >
               Kiani
             </h2> */}
-            {/* Image 2 */}
-            <div className="card-image-wrapper absolute -right-12 sm:right-2 2xl:right-12 -bottom-8 sm:bottom-0 translate-y-[35%] 2xl:translate-y-[20%] -rotate-[8deg] w-auto aspect-square h-[120px] 2xl:h-[180px] bg-white flex p-[5px] z-10">
-              {/* Image */}
-              <Image
-                className="w-full h-full object-cover object-center"
-                src={CardImage2}
-                alt="."
-              />
-            </div>
-          </div>
-          <span
-            id="subtitle"
-            className="relative z-20 leading-[0.8] uppercase tracking-[0.6em] sm:tracking-[0.8em] font-display whitespace-nowrap 2xl:text-[1.5rem] overflow-hidden"
-          >
-            Luxury Hotel & Spa
-          </span>
-        </div>
-
-        {/* Main */}
-        <div className="relative w-full flex-1 flex flex-col gap-5 min-h-0">
-          {/* Texts */}
-          <div className="flex flex-col md:flex-row items-start justify-between gap-2.5 sm:gap-10 px-5 sm:px-20 shrink-0 z-20">
-            <h3
-              className="text-[2rem] sm:text-[3rem] -tracking-[0.06em] leading-[1.05] normal-case w-full"
-              id="h3"
-            >
-              For <br className="hidden sm:inline" />
-              Timeless <br className="hidden sm:inline" />
-              Memories
-            </h3>
-
-            <div className="w-full flex h-full items-end justify-end">
-              <p
-                className="normal-case text-right leading-[1.4] -tracking-[0.02em] w-full"
-                id="paragraph"
-              >
-                Wake up in the heart of Canggu. <br />A place designed for rest,
-                recovery,
-                <br />
-                and genuine connection.
-              </p>
-            </div>
-          </div>
-
-          {/* Image & Texts */}
-          <div className="relative w-full flex-1 flex items-center justify-center min-h-0">
-            {/* Left Text */}
-            <p className="uppercase leading-[1.4] -tracking-[0.02em] absolute left-0  -translate-x-1/2 opacity-50">
-              <span className="inline-block whitespace-nowrap rotate-90">
-                Canggu Area
-              </span>
-            </p>
-            {/* Image Container */}
-            <div className="relative w-full h-full flex-1 px-5 sm:px-20 min-h-0">
-              <div
-                className="relative w-full h-full translate-y-full will-change-transform"
-                id="image-wrapper"
-              >
+              {/* Image 2 */}
+              <div className="card-image-wrapper absolute -right-12 sm:right-2 2xl:right-12 -bottom-8 sm:bottom-0 translate-y-[35%] 2xl:translate-y-[20%] -rotate-[8deg] w-auto aspect-square h-[120px] 2xl:h-[180px] bg-white flex p-[5px] z-10">
                 {/* Image */}
                 <Image
-                  className="w-full h-full object-cover object-[20%] 2xl:object-top"
-                  style={{ objectPosition: "5%" }}
-                  src={HeroImage}
-                  placeholder="blur"
-                  loading="eager"
-                  priority
-                  alt="Aerial view of Kiani luxury resort featuring modern concrete buildings with flat roofs, interconnected turquoise pools winding through the property, lush tropical jungle on one side, and crystal-clear turquoise ocean waters on the other, showcasing the seamless integration of architecture with nature"
+                  className="w-full h-full object-cover object-center"
+                  src={CardImage2}
+                  alt="."
                 />
               </div>
             </div>
-            {/* Right Text */}
-            <p className="uppercase leading-[1.4] -tracking-[0.02em] absolute right-0 translate-x-1/2 opacity-50">
-              <span className="inline-block whitespace-nowrap -rotate-90">
-                Best Rated
-              </span>
-            </p>
+            <span
+              id="subtitle"
+              className="relative z-20 leading-[0.8] uppercase tracking-[0.6em] sm:tracking-[0.8em] font-display whitespace-nowrap 2xl:text-[1.5rem] overflow-hidden"
+            >
+              Luxury Hotel & Spa
+            </span>
+          </div>
+
+          {/* Main */}
+          <div className="relative w-full flex-1 flex flex-col gap-5 min-h-0">
+            {/* Texts */}
+            <div className="relative flex flex-col md:flex-row items-end justify-between gap-2.5 sm:gap-10 px-5 sm:px-20 z-20">
+              <h3
+                className="text-[2rem] sm:text-[3rem] -tracking-[0.06em] leading-[1.05] normal-case w-full"
+                id="h3"
+              >
+                For <br className="hidden sm:inline" />
+                Timeless <br className="hidden sm:inline" />
+                Memories
+              </h3>
+
+              <div className="w-full flex h-full items-end justify-end">
+                <p
+                  className="normal-case text-right leading-[1.4] -tracking-[0.02em] w-full"
+                  id="paragraph"
+                >
+                  Wake up in the heart of Canggu. <br />A place designed for
+                  rest, recovery,
+                  <br />
+                  and genuine connection.
+                </p>
+              </div>
+            </div>
+
+            {/* Image & Texts */}
+            <div className="relative w-full flex-1 flex items-center justify-center min-h-0">
+              {/* Left Text */}
+              <p className="uppercase leading-[1.4] -tracking-[0.02em] absolute left-0  -translate-x-1/2 opacity-50">
+                <span className="inline-block whitespace-nowrap rotate-90">
+                  Canggu Area
+                </span>
+              </p>
+              {/* Image Container */}
+              <div
+                className="relative w-full h-full flex-1 px-5 sm:px-20 min-h-0"
+                id="image-container"
+              >
+                <div
+                  className="absolute inset-0 flex items-center justify-center z-30"
+                  id="text-container"
+                >
+                  <span
+                    id="text-1"
+                    className="text-[6rem] -tracking-[0.06em] leading-[1.05] text-white absolute translate-y-1/2 overflow-hidden opacity-0"
+                  >
+                    Canggu, Bali
+                  </span>
+
+                  <span
+                    id="text-2"
+                    className="text-[6rem] -tracking-[0.06em] leading-[1.05] text-white absolute translate-y-1/2 overflow-hidden opacity-0"
+                  >
+                    8.6500° S, 115.1300° E
+                  </span>
+                </div>
+                <div
+                  className="relative w-full h-[80svh] translate-y-full will-change-transform"
+                  id="image-wrapper"
+                >
+                  {/* Image */}
+                  <Image
+                    className="w-full h-full object-cover object-[20%] 2xl:object-top"
+                    style={{ objectPosition: "5%" }}
+                    src={HeroImage}
+                    placeholder="blur"
+                    loading="eager"
+                    priority
+                    alt="Aerial view of Kiani luxury resort featuring modern concrete buildings with flat roofs, interconnected turquoise pools winding through the property, lush tropical jungle on one side, and crystal-clear turquoise ocean waters on the other, showcasing the seamless integration of architecture with nature"
+                  />
+                </div>
+              </div>
+              {/* Right Text */}
+              <p className="uppercase leading-[1.4] -tracking-[0.02em] absolute right-0 translate-x-1/2 opacity-50">
+                <span className="inline-block whitespace-nowrap -rotate-90">
+                  Best Rated
+                </span>
+              </p>
+            </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
+      <Philosophy />
+      <SomeStays />
+      <RoomsSuites />
+    </main>
   );
 }
 

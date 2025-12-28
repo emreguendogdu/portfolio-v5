@@ -65,4 +65,9 @@ body {
     overflow-y: clip !important;
     overflow-x: visible !important;
   }
+
+  /* AnimatedText initial state */
+  [class^="line"] {
+    y: 200%;
+  }
 }
