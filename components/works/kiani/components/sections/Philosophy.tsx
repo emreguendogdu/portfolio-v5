@@ -16,9 +16,7 @@ export default function Philosophy() {
       className="relative min-h-svh w-full px-10 py-12.5 flex flex-col gap-30"
     >
       {/* Heading */}
-      <h2 className="text-[10.5rem] leading-[1.05] -tracking-[0.06em]">
-        Philosophy
-      </h2>
+      <h2>Philosophy</h2>
 
       {/* TOP: TEXT + IMAGE */}
       <div className="grid grid-cols-[1fr_30vw] gap-x-20 w-full">
@@ -68,11 +66,11 @@ export default function Philosophy() {
       <div className="grid grid-cols-[1fr_30vw] gap-x-20 w-full">
         {/* LEFT COLUMN */}
         <div className="grid grid-cols-12 gap-x-10 w-full">
-          <span className="uppercase font-bold col-start-5 col-span-4">
+          <span className="secondary-text font-bold col-start-5 col-span-4">
             Timeless
           </span>
 
-          <span className="uppercase col-start-9 col-span-4 whitespace-nowrap">
+          <span className="secondary-text col-start-9 col-span-4 whitespace-nowrap">
             Memories
           </span>
         </div>
@@ -88,13 +86,9 @@ export default function Philosophy() {
                 i === editorialListItems.length - 1 ? "pb-0" : null
               )}
             >
-              <span className="text-[2rem] -tracking-[0.04em] leading-[1.2]">
-                {(i + 1).toString().padStart(2, "0")}
-              </span>
+              <span className="h3">{(i + 1).toString().padStart(2, "0")}</span>
 
-              <span className="text-[2rem] -tracking-[0.04em] leading-[1.2] text-right">
-                {text}
-              </span>
+              <span className="h3 text-right">{text}</span>
             </div>
           ))}
         </div>

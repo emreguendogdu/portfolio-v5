@@ -66,13 +66,9 @@ export default function RoomsSuites() {
 
         {/* Subheader with Line */}
         <div className="flex items-center gap-4 mt-8 w-full max-w-lg">
-          <span className="text-xs md:text-sm font-medium tracking-widest uppercase opacity-70 whitespace-nowrap">
-            Your Place
-          </span>
+          <span className="secondary-text">Your Place</span>
           <div className="h-px bg-black/20 w-full" />
-          <span className="text-xs md:text-sm font-medium tracking-widest uppercase opacity-70 whitespace-nowrap">
-            To Unwind
-          </span>
+          <span className="secondary-text">To Unwind</span>
         </div>
       </div>
 
@@ -137,7 +133,7 @@ export const RoomCard = ({ data }: { data: RoomData }) => {
           </h2>
           <p
             className={cn(
-              "text-sm md:text-base font-light opacity-90 leading-relaxed w-max"
+              "text-sm md:text-base font-light opacity-90 leading-relaxed max-w-xs"
             )}
           >
             {data.description}
