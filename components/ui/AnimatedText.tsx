@@ -73,7 +73,11 @@ export default function AnimatedText({
         }
       });
 
-      gsap.set(lines.current, { y: "200%", rotate: "4deg" });
+      gsap.set(lines.current, {
+        y: "200%",
+        rotate: "4deg",
+        visibility: "visible",
+      });
 
       const animationProps = {
         y: "0%",
@@ -111,9 +115,14 @@ export default function AnimatedText({
   if (React.Children.count(children) === 1) {
     const child = React.Children.only(children);
     if (React.isValidElement(child)) {
-      return React.cloneElement(child as ReactElement<any>, {
-        ref: containerRef,
-      });
+      return React.cloneElement(
+        child as ReactElement<any>,
+        {
+          ...(child.props || {}),
+          ref: containerRef,
+          "data-animated-text": "true",
+        } as any
+      );
     }
   }
 
@@ -121,6 +130,7 @@ export default function AnimatedText({
     <div
       ref={containerRef as React.RefObject<HTMLDivElement>}
       data-copy-wrapper="true"
+      data-animated-text="true"
       className={className}
     >
       {children}

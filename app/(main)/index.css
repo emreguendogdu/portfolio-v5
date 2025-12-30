@@ -66,8 +66,9 @@ body {
     overflow-x: visible !important;
   }
 
-  /* AnimatedText initial state */
-  [class^="line"] {
-    y: 200%;
+  /* Hide SplitText lines initially until GSAP initializes */
+  /* Only target lines within AnimatedText components */
+  [data-animated-text] [class*="line"] {
+    visibility: hidden;
   }
 }

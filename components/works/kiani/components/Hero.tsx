@@ -29,7 +29,7 @@ export default function Hero() {
       mask: "lines",
     });
 
-    gsap.set(".card-image-wrapper", { opacity: 0 });
+    gsap.set(".card-image-wrapper", { opacity: 0, top: 200 });
     gsap.set(splitTitle.chars, { y: 400 });
     gsap.set(splitSubtitle.chars, { y: -400 });
     gsap.set(splitH3.lines, { y: 200, rotate: "8deg" });
