@@ -73,11 +73,12 @@ export default function AnimatedText({
         }
       });
 
+      // Show container and set line initial states
       gsap.set(lines.current, {
         y: "200%",
         rotate: "4deg",
-        visibility: "visible",
       });
+      gsap.set(containerRef.current, { visibility: "visible" });
 
       const animationProps = {
         y: "0%",
