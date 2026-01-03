@@ -29,6 +29,7 @@ export default function NotFoundPage() {
         <CtaButton
           type="big"
           text="Return to Homepage"
+          target="_self"
           href="/"
           className="bg-white text-black"
         />

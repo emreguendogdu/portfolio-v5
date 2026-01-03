@@ -3,7 +3,7 @@
 import { cn } from "@/lib/utils";
 import Link from "next/link";
 import ArrowRightIcon from "./ArrowRightIcon";
-import { useRef } from "react";
+import { HTMLAttributeAnchorTarget, useRef } from "react";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 
@@ -28,11 +28,13 @@ export default function CtaButton({
   href,
   type,
   className,
+  target = "_blank",
 }: {
   text: string;
   href: string;
   type: "small" | "big";
   className?: string;
+  target?: HTMLAttributeAnchorTarget;
 }) {
   if (!type) {
     throw new Error("Define type for the CTA button.");
@@ -214,7 +216,7 @@ export default function CtaButton({
     <Link
       ref={containerRef}
       href={href}
-      target="_blank"
+      target={target}
       className={cn(
         "flex items-center bg-foreground text-background rounded-lg relative overflow-hidden group",
         type === "big"
