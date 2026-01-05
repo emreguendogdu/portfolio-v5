@@ -1,4 +1,3 @@
-import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./index.css";
 
@@ -13,12 +12,6 @@ const neueMontreal = localFont({
   variable: "--font-neue-montreal",
   display: "swap",
 });
-
-export const metadata: Metadata = {
-  title: "Emre Gundogdu | Web Design & Development Partner",
-  description:
-    "Turkey-based Web Design & Development Partner. Crafting unforgettable, performance-driven websites and web apps (E-Commerce, SAAS, Luxury). See selected work and book your project.",
-};
 
 export default function MainLayout({
   children,

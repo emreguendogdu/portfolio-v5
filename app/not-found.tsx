@@ -1,6 +1,12 @@
 import Header from "@/components/Header";
 import CtaButton from "@/components/ui/CtaButton";
 import Galaxy from "@/components/ui/Galaxy";
+import { constructMetadata } from "@/lib/metadata";
+
+export const metadata = constructMetadata({
+  title: "404 - Page Not Found",
+  noIndex: true,
+});
 
 export default function NotFoundPage() {
   return (
