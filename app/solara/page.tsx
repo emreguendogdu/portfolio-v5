@@ -38,20 +38,16 @@ export default function page() {
             <li>Rooms & Suites</li>
             <li>Aqua</li>
             <li>Dining</li>
-            {/* Divider */}
             <div className="self-stretch w-px bg-foreground/40" />
             <li>Experiences</li>
             <li>Offers</li>
           </ul>
 
-          <button className="uppercase">Menu</button>
+          <button className="uppercase sm:hidden">Menu</button>
         </header>
 
-        {/* Main Content */}
         <div className="relative flex flex-col justify-between w-full">
-          {/* Heading */}
           <div className="relative pt-[20svh] sm:pt-[13.6svh] flex flex-col items-center gap-2.5 w-fit">
-            {/* Stars */}
             <div
               className="flex items-center gap-1.25 sm:gap-2.5 text-foreground overflow-hidden"
               id="hero-stars-container"
@@ -75,12 +71,10 @@ export default function page() {
             </div>
           </div>
 
-          {/* Award Badge Container */}
           <div
             id="award-badge-container"
             className="relative translate-x-5 -translate-y-1/3 flex w-full justify-end select-none pointer-events-none"
           >
-            {/* Badge */}
             <div
               id="award-badge"
               className="relative translate-x-full will-change-transform bg-foreground text-background p-2.5 sm:p-5 flex flex-col items-center gap-5 w-fit h-fit"
@@ -92,25 +86,23 @@ export default function page() {
             </div>
           </div>
         </div>
-        {/* Bottom content */}
         <div className="absolute px-5 py-5 bottom-0 left-0 right-0 w-full flex flex-col md:flex-row md:items-end justify-between gap-5 sm:gap-10">
-          {/* Text */}
           <div
             id="bottom-content-text-wrapper"
             className="flex flex-col gap-2.5 sm:gap-5"
           >
-            <h2>
+            <h2 className="whitespace-nowrap">
               A stay shaped by light, <br />
               space, and silence.
             </h2>
 
-            <p>
+            <p className="whitespace-nowrap">
               Luxury retreats on the Turkish Riviera, <br /> designed for
               presence—not excess.
             </p>
           </div>
 
-          <div className="relative w-full items-center md:items-end hidden sm:flex">
+          <div className="relative w-full justify-center md:justify-end hidden md:flex">
             <BookingElement />
           </div>
 
@@ -166,7 +158,7 @@ const Preloader = () => {
   return (
     <section
       id="preloader"
-      className="fixed inset-0 z-999 h-svh flex flex-col gap-2.5 items-center justify-center bg-foreground text-background hidden"
+      className="fixed inset-0 z-999 h-svh flex flex-col gap-2.5 items-center justify-center bg-foreground text-background overflow-hidden hidden"
     >
       <div className="absolute top-1/2 left-1/2 -translate-1/2">
         <h2 className="first-text">Welcome to...</h2>
@@ -187,9 +179,9 @@ const Preloader = () => {
             </Fragment>
           ))}
         </div>
-        <h1 className="second-text flex items-center justify-center overflow-y-hidden">
+        <h1 className="second-text flex items-center justify-center overflow-hidden">
           <div
-            className="split-target flex justify-end overflow-hidden"
+            className="split-target relative z-10 flex justify-end overflow-hidden"
             style={{ width: "1.5em" }}
           >
             <span>Sol</span>
@@ -212,14 +204,16 @@ const Preloader = () => {
             </div>
           </div>
           <div
-            className="split-target flex justify-start overflow-hidden"
+            className="split-target relative z-10 flex justify-start overflow-hidden"
             style={{ width: "1.5em" }}
           >
             <span>ara</span>
           </div>
         </h1>
 
-        <h2 className="second-text">Grand & Aqua Hotel</h2>
+        <h2 className="second-text relative z-10 overflow-hidden">
+          Grand & Aqua Hotel
+        </h2>
       </div>
     </section>
   );
@@ -366,28 +360,10 @@ const usePreloaderAnimation = ({
 
     const isMobile = window.matchMedia("(max-width: 768px)").matches;
 
-    // 1. "Welcome to..." entrance
     tl.fromTo(splitFirstText.lines, lineAnimation.start, lineAnimation.end);
 
-    // 2. "Welcome to..." exit
     tl.to(splitFirstText.lines, lineAnimation.exit, "+=0.1");
 
-    // 3. "Solara" text entrance
-    tl.fromTo(
-      splitH1.chars,
-      { opacity: 0, y: 100 },
-      {
-        opacity: 1,
-        y: 0,
-        stagger: 0.05,
-      },
-      "<0.2"
-    );
-
-    // 4. "Grand & Aqua" text entrance
-    tl.fromTo(splitH2.lines, lineAnimation.start, lineAnimation.end, "<");
-
-    // 5. Stars fly in (overlaps slightly with exit)
     tl.fromTo(
       stars,
       { z: 800, y: 150, autoAlpha: 0 },
@@ -402,27 +378,25 @@ const usePreloaderAnimation = ({
       "<"
     );
 
-    // Stars go above
-    /*     tl.fromTo(
-      stars,
-      { z: 1600, y: 150, opacity: 0 },
+    tl.fromTo(
+      splitH1.chars,
+      { opacity: 0, y: 100 },
       {
-        z: 0,
-        y: 0,
         opacity: 1,
-        stagger: 0.1,
-        duration: 2,
+        y: 0,
+        stagger: 0.05,
       },
-      "-=1"
-    ); */
+      "<0.2"
+    );
 
-    // 6. Image entrance - match the stars container' width
+    tl.fromTo(splitH2.lines, lineAnimation.start, lineAnimation.end, "<");
+
     tl.to(
       "#image-wrapper",
       {
         width: isMobile ? "6.75rem" : "10.5rem",
       },
-      "-=0.3"
+      ">"
     );
     tl.to(
       "#growing-image",
@@ -431,7 +405,6 @@ const usePreloaderAnimation = ({
       },
       "<"
     )
-      // Move text apart to create gap
       .to(
         ".split-target:first-child",
         {
@@ -447,7 +420,6 @@ const usePreloaderAnimation = ({
         "<"
       );
 
-    // 7. Expand image to full screen (like OSMO Willem)
     tl.to(
       "#growing-image",
       {
@@ -461,7 +433,9 @@ const usePreloaderAnimation = ({
       "#image-wrapper",
       {
         width: "100vw",
+        height: "100svh",
         duration: 2,
+        ease: "expo.out",
       },
       "<"
     );
