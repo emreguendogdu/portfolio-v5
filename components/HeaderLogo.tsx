@@ -5,6 +5,7 @@ import { useRef } from "react";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { SplitText } from "gsap/SplitText";
+import { cn } from "@/lib/utils";
 
 gsap.registerPlugin(SplitText);
 
@@ -14,7 +15,7 @@ const CONFIG = {
   delay: 0.025,
 };
 
-export default function HeaderLogo() {
+export default function HeaderLogo({ className }: { className?: string }) {
   const containerRef = useRef<HTMLAnchorElement>(null);
   const textTopRef = useRef<HTMLDivElement>(null);
   const textBottomRef = useRef<HTMLDivElement>(null);
@@ -127,14 +128,20 @@ export default function HeaderLogo() {
     <Link
       ref={containerRef}
       href="/"
-      className="capitalize absolute top-0 sm:top-1/2 sm:-translate-y-1/2 sm:left-1/2 sm:-translate-x-1/2 text-center overflow-hidden"
+      className={cn(
+        "absolute top-0 sm:top-1/2 sm:-translate-y-1/2 sm:left-1/2 sm:-translate-x-1/2 text-center overflow-hidden",
+        className
+      )}
     >
       <span className="sr-only">Emre Gundogdu</span>
       <div className="relative" aria-hidden="true">
-        <div ref={textTopRef} className="whitespace-nowrap">
+        <div ref={textTopRef} className="whitespace-nowrap normal-case">
           Emre Gundogdu
         </div>
-        <div ref={textBottomRef} className="absolute inset-0 whitespace-nowrap">
+        <div
+          ref={textBottomRef}
+          className="absolute inset-0 whitespace-nowrap normal-case"
+        >
           Emre Gundogdu
         </div>
       </div>

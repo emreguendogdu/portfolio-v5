@@ -16,6 +16,17 @@ interface Props {
 
 gsap.registerPlugin(SplitText, ScrollTrigger);
 
+const TEXT_ANIMATION_CONFIG = {
+  set: { y: "200%", rotate: "4deg" },
+  to: {
+    y: "0%",
+    rotate: 0,
+    duration: 1.2,
+    stagger: 0.1,
+    ease: "power4.out",
+  },
+};
+
 export default function AnimatedText({
   children,
   animateOnScroll = true,
@@ -74,24 +85,13 @@ export default function AnimatedText({
       });
 
       // Show container and set line initial states
-      gsap.set(lines.current, {
-        y: "200%",
-        rotate: "4deg",
-      });
+      gsap.set(lines.current, TEXT_ANIMATION_CONFIG.set);
       gsap.set(containerRef.current, { visibility: "visible" });
-
-      const animationProps = {
-        y: "0%",
-        rotate: 0,
-        duration: 1.2,
-        stagger: 0.1,
-        ease: "power4.out",
-        delay: delay,
-      };
 
       if (animateOnScroll) {
         gsap.to(lines.current, {
-          ...animationProps,
+          ...TEXT_ANIMATION_CONFIG.to,
+          delay,
           scrollTrigger: {
             trigger: containerRef.current,
             start: "top 90%",
@@ -99,7 +99,7 @@ export default function AnimatedText({
           },
         });
       } else {
-        gsap.to(lines.current, animationProps);
+        gsap.to(lines.current, TEXT_ANIMATION_CONFIG.to);
       }
 
       return () => {
