@@ -18,10 +18,9 @@ export default function TestimonialSection() {
       <div className="flex flex-col gap-20">
         <div className="flex flex-col gap-5">
           <p className="max-w-lg h3">
-            “Ullamco nostrud culpa ipsum aliqua incididunt velit occaecat.
-            Fugiat sint amet sit veniam ex id quis duis fugiat in ut dolor
-            minim. Velit nulla elit dolor officia esse. Lorem enim exercitation
-            reprehenderit pariatur.
+            “From the moment I arrived, everything felt unforced. The
+            architecture, the silence... Kiani gives you space to feel present.
+            We left feeling lighter.
           </p>
 
           <span className="secondary-text">Sophia Teller</span>

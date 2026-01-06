@@ -20,7 +20,7 @@ export default function CardImage({
       )}
     >
       <Image
-        className="w-full h-full object-cover object-center"
+        className="w-full h-full object-cover object-center card-image"
         src={src}
         alt={alt}
       />

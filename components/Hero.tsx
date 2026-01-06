@@ -10,15 +10,15 @@ import Header from "./Header";
 
 gsap.registerPlugin(SplitText);
 
-const animStart = 0.2,
-  animStagger = 0.1;
+const animStart = 0.2;
 
 export default function Hero() {
   const [imageLoaded, setImageLoaded] = useState<boolean>(false);
-  const [imageAnimated, setImageAnimated] = useState<boolean>(false);
 
   useGSAP(
     () => {
+      gsap.set("#hero", { visibility: "visible" });
+      gsap.set("header", { visibility: "visible" });
       const tl = gsap.timeline({
         delay: animStart,
         defaults: {
@@ -29,95 +29,84 @@ export default function Hero() {
 
       const splits: SplitText[] = [];
 
-      const animateLines = (selector: string, delay: number, stagger = 0.1) => {
-        const split = new SplitText(selector, {
-          type: "lines",
-          linesClass: "line-mask",
-          mask: "lines",
-        });
-        splits.push(split);
+      // 1. Define the items in the order they should animate
+      const sequence = [
+        ".header-build",
+        ".header-logo",
+        ".header-location",
+        ".header-time",
+        ".hero-web",
+        ".hero-design",
+        ".hero-and",
+        ".hero-dev",
+        ".hero-partner",
+        ".hero-p",
+        ".hero-scroll",
+        ".hero-booking",
+        ".hero-cta",
+      ];
 
-        tl.from(
-          split.lines,
-          {
-            y: "200%",
-            rotate: "4deg",
-            stagger,
-          },
-          delay
-        );
-      };
+      // 2. Process items into targets (splitting text where needed)
+      const targets: Element[] = [];
+      sequence.forEach((selector) => {
+        const el = document.querySelector(selector);
+        if (!el) return;
 
+        // Header logo and CTA button shouldn't be split into lines
+        const shouldSplit = ![".header-logo", ".hero-cta"].includes(selector);
 
+        if (shouldSplit) {
+          const split = new SplitText(el, {
+            type: "lines",
+            linesClass: "line-mask",
+            mask: "lines",
+          });
+          splits.push(split);
+          if (split.lines) targets.push(...(split.lines as any));
+        } else {
+          targets.push(el);
+        }
+      });
+
+      // 3. Initial states
       gsap.set("#hero-img-wrapper", {
         clipPath: "inset(100% 0% 0% 0%)",
       });
+      gsap.set([".header-logo", ".hero-cta"], { opacity: 0 });
 
-      // Header Animations
-      animateLines(".header-build", 0);
-      animateLines(".header-location", animStagger);
-      animateLines(".header-time", animStagger * 2);
-      tl.from(
-        ".header-logo",
-        {
-          y: "200%",
-          rotate: "4deg",
-          opacity: 0,
-        },
-        animStagger
-      );
+      // 4. Animate everything in one go with a single stagger
+      tl.from(targets, {
+        y: "200%",
+        rotate: "4deg",
+        // Only the logo and CTA need opacity animation, others are masked
+        opacity: (i, target: any) =>
+          target.classList.contains("header-logo") ||
+          target.classList.contains("hero-cta")
+            ? 0
+            : 1,
+        stagger: 0.08,
+      });
 
-      // Hero Content Animations
-      animateLines(".hero-web", 0.3);
-      animateLines(".hero-design", 0.3 + animStagger);
-      animateLines(".hero-and", 0.3 + animStagger * 2);
-      animateLines(".hero-dev", 0.3 + animStagger * 3);
-      animateLines(".hero-partner", 0.3 + animStagger * 4);
-
+      // 5. Image reveal - triggered slightly after the titles start
       if (imageLoaded) {
         tl.to(
           "#hero-img-wrapper",
           {
             clipPath: "inset(0% 0% 0% 0%)",
+            duration: 1.5,
+            ease: "expo.inOut",
           },
-          "<0.2"
+          0.6 // Relative point in the timeline
         );
-
-        setImageAnimated(true);
-      }
-
-      animateLines(".hero-p", 0.3 + animStagger * 5);
-      animateLines(".hero-scroll", 0.3 + animStagger * 6);
-      animateLines(".hero-booking", 0.3 + animStagger * 6);
-
-      tl.from(
-        ".hero-cta",
-        {
-          y: "100%",
-          opacity: 0,
-        },
-        "<0.2"
-      );
-
-      if (imageAnimated === false && imageLoaded) {
-        tl.to(
-          "#hero-img-wrapper",
-          {
-            clipPath: "inset(0% 0% 0% 0%)",
-          },
-          "<0.2"
-        );
-
-        setImageAnimated(true);
       }
     },
-    { dependencies: [imageLoaded, imageAnimated] }
+    { dependencies: [imageLoaded] }
   );
 
   return (
     <section
       id="hero"
-      className="relative w-full min-h-svh flex flex-col pt-[15svh] items-center justify-between gap-10 py-4 pb-6 sm:pb-10 overflow-hidden"
+      className="relative w-full min-h-svh flex flex-col pt-[15svh] items-center justify-between gap-10 py-4 pb-6 sm:pb-10 overflow-hidden invisible"
     >
       <div className="relative grid grid-cols-12 grid-rows-4 gap-2 sm:gap-6 z-10">
         <h1 className="sr-only">Web Design & Development Partner</h1>
@@ -189,12 +178,14 @@ export default function Hero() {
           <p className="hero-booking text-right">
             Booking For — <br /> January 2026
           </p>
-          <div className="relative hero-cta">
-            <CtaButton
-              text="Schedule a Call"
-              type="small"
-              href="https://cal.com/emregnd/inquiry"
-            />
+          <div className="relative">
+            <div className="relative w-full h-full hero-cta">
+              <CtaButton
+                text="Schedule a Call"
+                type="small"
+                href="https://cal.com/emregnd/inquiry"
+              />
+            </div>
           </div>
         </div>
       </div>

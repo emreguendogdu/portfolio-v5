@@ -1,5 +1,7 @@
 import { Metadata } from "next";
 
+export const PORTFOLIO_SITE_LINK = "https://emregnd.com";
+
 export const siteConfig = {
   name: "Emre Gundogdu",
   titleTemplate: "%s | Emre Gundogdu",

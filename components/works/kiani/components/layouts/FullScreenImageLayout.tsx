@@ -25,7 +25,7 @@ export default function FullScreenImageLayout({
     <section
       id={sectionId}
       className={cn(
-        "relative w-full h-[80svh] px-10 py-10 text-white",
+        "relative w-full h-[95svh] px-10 py-10 text-white",
         className
       )}
     >

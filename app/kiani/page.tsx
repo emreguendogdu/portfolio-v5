@@ -1,4 +1,4 @@
-import { constructMetadata } from "@/lib/metadata";
+import { constructMetadata } from "@/lib/siteConfig";
 import Philosophy from "@/components/works/kiani/components/sections/Philosophy";
 import SomeStays from "@/components/works/kiani/components/sections/SomeStays";
 import RoomsSuites from "@/components/works/kiani/components/sections/RoomsSuites";

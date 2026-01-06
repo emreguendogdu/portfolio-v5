@@ -3,7 +3,7 @@ import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import SelectedWorks from "@/components/SelectedWorks";
-import { constructMetadata } from "@/lib/metadata";
+import { constructMetadata } from "@/lib/siteConfig";
 
 export const metadata = constructMetadata({
   title: "Creative Developer & Designer",

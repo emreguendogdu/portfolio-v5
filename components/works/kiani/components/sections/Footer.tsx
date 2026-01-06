@@ -1,8 +1,24 @@
+import Link from "next/link";
 import CTA from "../ui/CTA";
+import Facebook from "../ui/icons/Facebook";
+import Instagram from "../ui/icons/Instagram";
+import Youtube from "../ui/icons/YouTube";
+import { PORTFOLIO_SITE_LINK } from "@/lib/siteConfig";
 
-const SOCIAL_LINKS_COUNT = 3;
+const SOCIAL_LINKS_COUNT: number = 3;
 
-const NAVIGATION_COLUMNS = [
+type NAV_COLUMN_TYPE = {
+  links: string[];
+  bottomText: string;
+};
+
+type SOCIAL_LINKS_TYPE = {
+  icon: React.ReactNode;
+  href: string;
+  ariaLabel: string;
+};
+
+const NAVIGATION_COLUMNS: NAV_COLUMN_TYPE[] = [
   {
     links: ["Rooms & Suites", "SPA & Wellness"],
     bottomText: "Terms of Service",
@@ -14,6 +30,24 @@ const NAVIGATION_COLUMNS = [
   {
     links: ["Offers", "About Kiani"],
     bottomText: "© 2025",
+  },
+];
+
+const SOCIAL_LINKS: SOCIAL_LINKS_TYPE[] = [
+  {
+    icon: <Instagram />,
+    href: PORTFOLIO_SITE_LINK,
+    ariaLabel: "Instagram",
+  },
+  {
+    icon: <Facebook />,
+    href: PORTFOLIO_SITE_LINK,
+    ariaLabel: "Facebook",
+  },
+  {
+    icon: <Youtube />,
+    href: PORTFOLIO_SITE_LINK,
+    ariaLabel: "Youtube",
   },
 ];
 
@@ -60,9 +94,11 @@ export default function Footer() {
               <p className="text-right">+62 812 3456 7890</p>
             </div>
 
-            <div className="flex items-center gap-5 justify-end">
-              {Array.from({ length: SOCIAL_LINKS_COUNT }).map((_, i) => (
-                <div key={i} className="w-4 h-4 bg-foreground rounded-full" />
+            <div className="flex items-center gap-5 justify-end text-[1.5rem]">
+              {SOCIAL_LINKS.map((link, i) => (
+                <Link key={i} href={link.href} aria-label={link.ariaLabel}>
+                  {link.icon}
+                </Link>
               ))}
             </div>
           </div>

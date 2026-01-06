@@ -29,14 +29,19 @@ export default function Hero() {
       mask: "lines",
     });
 
-    gsap.set(".card-image-wrapper", { opacity: 0, top: 200 });
-    gsap.set(splitTitle.chars, { y: 400 });
-    gsap.set(splitSubtitle.chars, { y: -400 });
+    gsap.set(".card-image-wrapper", {
+      clipPath: "inset(100% 0% 0% 0%)",
+      opacity: 0,
+      yPercent: 50,
+    });
+
+    gsap.set(splitTitle.chars, { yPercent: 110 });
+    gsap.set(splitSubtitle.chars, { yPercent: 110 });
     gsap.set(splitH3.lines, { y: 200, rotate: "8deg" });
     gsap.set(splitParagraph.lines, { y: 200, rotate: "-8deg" });
 
     const tl = gsap.timeline({
-      defaults: { duration: 1.5, ease: "pow2.inOut" },
+      defaults: { duration: 1.5, ease: "pow1.inOut" },
       onComplete: () => {
         gsap.to("#preloader", { display: "none", duration: 0.1 });
       },
@@ -44,36 +49,8 @@ export default function Hero() {
 
     tl.to("#preloader #background-wrapper #background", {
       yPercent: -100,
-      delay: 0.5,
     })
-      .to("#kiani-home #image-wrapper", { y: 0 }, "<")
-      .to(
-        splitTitle.chars,
-        {
-          y: 0,
-          duration: 0.8,
-          stagger: 0.1,
-        },
-        "<+0.4"
-      )
-      .to(
-        splitSubtitle.chars,
-        {
-          y: 0,
-          duration: 0.8,
-          stagger: 0.025,
-        },
-        "<"
-      )
-      .to(
-        ".card-image-wrapper",
-        {
-          opacity: 1,
-          duration: 0.8,
-          stagger: 0.1,
-        },
-        "<+1"
-      )
+      .to("#kiani-home #image-wrapper", { y: 0 }, "<-0.4")
       .to(
         splitH3.lines,
         {
@@ -81,7 +58,7 @@ export default function Hero() {
           rotate: 0,
           stagger: 0.1,
         },
-        "<-0.2"
+        "<"
       )
       .to(
         splitParagraph.lines,
@@ -89,6 +66,35 @@ export default function Hero() {
           y: 0,
           rotate: 0,
           stagger: 0.1,
+        },
+        "<"
+      )
+      .to(
+        splitSubtitle.chars,
+        {
+          yPercent: 0,
+          duration: 0.8,
+          stagger: 0.01625,
+        },
+        "<1"
+      )
+      .to(
+        splitTitle.chars,
+        {
+          yPercent: 0,
+          duration: 0.8,
+          stagger: 0.01625,
+        },
+        "<0.2"
+      )
+      .to(
+        ".card-image-wrapper",
+        {
+          opacity: 1,
+          duration: 0.8,
+          yPercent: 0,
+          clipPath: "inset(0% 0% 0% 0%)",
+          stagger: 0.3,
         },
         "<"
       );
@@ -116,7 +122,7 @@ export default function Hero() {
               alt="."
             />
             {/* Title */}
-            <h2 id="title" className="h0">
+            <h2 id="title" className="relative h0">
               Kiani
             </h2>
 
@@ -128,7 +134,7 @@ export default function Hero() {
               alt="."
             />
           </div>
-          <span id="subtitle" className="hotel-text">
+          <span id="subtitle" className="relative hotel-text">
             Luxury Hotel & Spa
           </span>
         </div>
@@ -172,14 +178,14 @@ export default function Hero() {
               >
                 <span
                   id="text-1"
-                  className="text-[6rem] -tracking-[0.06em] leading-[1.05] text-white absolute translate-y-1/2 overflow-hidden opacity-0"
+                  className="text-[6rem] -tracking-[0.06em] leading-[1.05] text-white absolute translate-y-1/2 overflow-hidden opacity-0 whitespace-nowrap"
                 >
                   Canggu, Bali
                 </span>
 
                 <span
                   id="text-2"
-                  className="text-[6rem] -tracking-[0.06em] leading-[1.05] text-white absolute translate-y-1/2 overflow-hidden opacity-0"
+                  className="text-[6rem] -tracking-[0.06em] leading-[1.05] text-white absolute translate-y-1/2 overflow-hidden opacity-0 whitespace-nowrap"
                 >
                   8.6500° S, 115.1300° E
                 </span>

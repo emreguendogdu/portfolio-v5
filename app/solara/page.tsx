@@ -1,4 +1,4 @@
-import { constructMetadata } from "@/lib/metadata";
+import { constructMetadata } from "@/lib/siteConfig";
 import { Hero } from "./components/Hero";
 import { Preloader } from "./components/Preloader";
 import { AnimationProvider } from "./context/AnimationContext";

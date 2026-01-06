@@ -11,7 +11,7 @@ export default function Header({ className }: { className?: string }) {
     <header
       ref={container}
       className={cn(
-        "absolute top-4 left-0 right-0 px-4 sm:px-10 pb-4 w-full flex justify-between items-center z-10",
+        "absolute top-4 left-0 right-0 px-4 sm:px-10 pb-4 w-full flex justify-between items-center z-10 invisible",
         className
       )}
     >
