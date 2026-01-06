@@ -1,15 +1,32 @@
 import { NextRequest, NextResponse } from "next/server";
 
-export function middleware(req: NextRequest) {
-  const host = req.headers.get("host") || "";
+export const config = {
+  matcher: [
+    /*
+     * Match all request paths except for the ones starting with:
+     * - api (API routes)
+     * - _next/static (static files)
+     * - _next/image (image optimization files)
+     * - favicon.ico (favicon file)
+     */
+    "/((?!api|_next/static|_next/image|favicon.ico).*)",
+  ],
+};
 
-  if (host.startsWith("kiani.")) {
-    return NextResponse.rewrite(new URL("/kiani", req.url));
+export function middleware(req: NextRequest) {
+  const url = req.nextUrl;
+  const hostname = req.headers.get("host") || "";
+
+  if (hostname.startsWith("kiani.")) {
+    url.pathname = `/kiani${url.pathname}`;
+    return NextResponse.rewrite(url);
   }
 
-  if (host.startsWith("solara.")) {
-    return NextResponse.rewrite(new URL("/solara", req.url));
+  if (hostname.startsWith("solara.")) {
+    url.pathname = `/solara${url.pathname}`;
+    return NextResponse.rewrite(url);
   }
 
   return NextResponse.next();
 }
+    
