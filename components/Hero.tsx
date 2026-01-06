@@ -29,7 +29,7 @@ export default function Hero() {
 
       const splits: SplitText[] = [];
 
-      const animateLines = (selector: string) => {
+      const animateLines = (selector: string, delay: number, stagger = 0.1) => {
         const split = new SplitText(selector, {
           type: "lines",
           linesClass: "line-mask",
@@ -37,11 +37,17 @@ export default function Hero() {
         });
         splits.push(split);
 
-        tl.from(split.lines, {
-          y: "200%",
-          rotate: "4deg",
-        });
+        tl.from(
+          split.lines,
+          {
+            y: "200%",
+            rotate: "4deg",
+            stagger,
+          },
+          delay
+        );
       };
+
 
       gsap.set("#hero-img-wrapper", {
         clipPath: "inset(100% 0% 0% 0%)",
