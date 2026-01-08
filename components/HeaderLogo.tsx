@@ -128,10 +128,7 @@ export default function HeaderLogo({ className }: { className?: string }) {
     <Link
       ref={containerRef}
       href="/"
-      className={cn(
-        "absolute top-0 sm:top-1/2 sm:-translate-y-1/2 sm:left-1/2 sm:-translate-x-1/2 text-center overflow-hidden",
-        className
-      )}
+      className={cn("text-center overflow-hidden", className)}
     >
       <span className="sr-only">Emre Gundogdu</span>
       <div className="relative" aria-hidden="true">

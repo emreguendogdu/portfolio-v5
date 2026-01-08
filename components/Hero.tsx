@@ -5,8 +5,7 @@ import gsap from "gsap";
 import { SplitText } from "gsap/SplitText";
 import CtaButton from "./ui/CtaButton";
 import Image from "next/image";
-import { useState, useRef } from "react";
-import Header from "./Header";
+import { useState } from "react";
 
 gsap.registerPlugin(SplitText);
 
@@ -72,20 +71,20 @@ export default function Hero() {
       gsap.set("#hero-img-wrapper", {
         clipPath: "inset(100% 0% 0% 0%)",
       });
-      gsap.set([".header-logo", ".hero-cta"], { opacity: 0 });
 
       // 4. Animate everything in one go with a single stagger
-      tl.from(targets, {
-        y: "200%",
-        rotate: "4deg",
-        // Only the logo and CTA need opacity animation, others are masked
-        opacity: (i, target: any) =>
-          target.classList.contains("header-logo") ||
-          target.classList.contains("hero-cta")
-            ? 0
-            : 1,
-        stagger: 0.08,
-      });
+      tl.fromTo(
+        targets,
+        {
+          y: "200%",
+          rotate: "4deg",
+        },
+        {
+          y: "0%",
+          rotate: "0deg",
+          stagger: 0.08,
+        }
+      );
 
       // 5. Image reveal - triggered slightly after the titles start
       if (imageLoaded) {
@@ -179,10 +178,11 @@ export default function Hero() {
             Booking For — <br /> January 2026
           </p>
           <div className="relative">
-            <div className="relative w-full h-full hero-cta">
+            <div className="relative w-full h-full overflow-hidden hero-cta-wrapper">
               <CtaButton
                 text="Schedule a Call"
                 type="small"
+                className="hero-cta"
                 href="https://cal.com/emregnd/inquiry"
               />
             </div>

@@ -21,7 +21,11 @@ export default function Header({ className }: { className?: string }) {
           v1.0
         </p>
       </div>
-      <HeaderLogo className="header-logo" />
+      <div className="absolute top-0 sm:top-1/2 sm:-translate-y-1/2 sm:left-1/2 sm:-translate-x-1/2 overflow-hidden">
+        <div className="header-logo">
+          <HeaderLogo className="relative" />
+        </div>
+      </div>
 
       <div className="text-right opacity-50">
         <div className="header-anim-item header-location">
