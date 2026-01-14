@@ -1,56 +1,56 @@
-"use client";
+'use client';
 
-import Image from "next/image";
-import HeroImage from "@/public/work/kiani/images/hero-img.png";
-import CardImage1 from "@/public/work/kiani/images/tst-1.png";
-import CardImage2 from "@/public/work/kiani/images/tst-2.png";
-import { useGSAP } from "@gsap/react";
-import { SplitText } from "gsap/SplitText";
-import gsap from "gsap";
-import Header from "./Header";
-import CardImage from "./ui/CardImage";
+import Image from 'next/image';
+import HeroImage from '@/public/work/kiani/images/hero-img.png';
+import CardImage1 from '@/public/work/kiani/images/card-image-1.png';
+import CardImage2 from '@/public/work/kiani/images/card-image-2.png';
+import { useGSAP } from '@gsap/react';
+import { SplitText } from 'gsap/SplitText';
+import gsap from 'gsap';
+import Header from './Header';
+import CardImage from './ui/CardImage';
 
 gsap.registerPlugin(SplitText);
 
 export default function Hero() {
   useGSAP(() => {
-    const splitTitle = SplitText.create("#kiani-home #title", {
-      type: "chars",
+    const splitTitle = SplitText.create('#kiani-home #title', {
+      type: 'chars',
     });
-    const splitSubtitle = SplitText.create("#kiani-home #subtitle", {
-      type: "chars",
+    const splitSubtitle = SplitText.create('#kiani-home #subtitle', {
+      type: 'chars',
     });
-    const splitH3 = SplitText.create("#kiani-home h3", {
-      type: "lines",
-      mask: "lines",
+    const splitH3 = SplitText.create('#kiani-home h3', {
+      type: 'lines',
+      mask: 'lines',
     });
-    const splitParagraph = SplitText.create("#kiani-home p", {
-      type: "lines",
-      mask: "lines",
+    const splitParagraph = SplitText.create('#kiani-home p', {
+      type: 'lines',
+      mask: 'lines',
     });
 
-    gsap.set(".card-image-wrapper", {
-      clipPath: "inset(100% 0% 0% 0%)",
+    gsap.set('.card-image-wrapper', {
+      clipPath: 'inset(100% 0% 0% 0%)',
       opacity: 0,
       yPercent: 50,
     });
 
     gsap.set(splitTitle.chars, { yPercent: 110 });
     gsap.set(splitSubtitle.chars, { yPercent: 110 });
-    gsap.set(splitH3.lines, { y: 200, rotate: "8deg" });
-    gsap.set(splitParagraph.lines, { y: 200, rotate: "-8deg" });
+    gsap.set(splitH3.lines, { y: 200, rotate: '8deg' });
+    gsap.set(splitParagraph.lines, { y: 200, rotate: '-8deg' });
 
     const tl = gsap.timeline({
-      defaults: { duration: 1.5, ease: "pow1.inOut" },
+      defaults: { duration: 1.5, ease: 'pow1.inOut' },
       onComplete: () => {
-        gsap.to("#preloader", { display: "none", duration: 0.1 });
+        gsap.to('#preloader', { display: 'none', duration: 0.1 });
       },
     });
 
-    tl.to("#preloader #background-wrapper #background", {
+    tl.to('#preloader #background-wrapper #background', {
       yPercent: -100,
     })
-      .to("#kiani-home #image-wrapper", { y: 0 }, "<-0.4")
+      .to('#kiani-home #image-wrapper', { y: 0 }, '<-0.4')
       .to(
         splitH3.lines,
         {
@@ -58,7 +58,7 @@ export default function Hero() {
           rotate: 0,
           stagger: 0.1,
         },
-        "<"
+        '<'
       )
       .to(
         splitParagraph.lines,
@@ -67,7 +67,7 @@ export default function Hero() {
           rotate: 0,
           stagger: 0.1,
         },
-        "<"
+        '<'
       )
       .to(
         splitSubtitle.chars,
@@ -76,7 +76,7 @@ export default function Hero() {
           duration: 0.8,
           stagger: 0.01625,
         },
-        "<1"
+        '<1'
       )
       .to(
         splitTitle.chars,
@@ -85,18 +85,18 @@ export default function Hero() {
           duration: 0.8,
           stagger: 0.01625,
         },
-        "<0.2"
+        '<0.2'
       )
       .to(
-        ".card-image-wrapper",
+        '.card-image-wrapper',
         {
           opacity: 1,
           duration: 0.8,
           yPercent: 0,
-          clipPath: "inset(0% 0% 0% 0%)",
+          clipPath: 'inset(0% 0% 0% 0%)',
           stagger: 0.3,
         },
-        "<"
+        '<'
       );
   });
 
@@ -197,7 +197,7 @@ export default function Hero() {
                 {/* Image */}
                 <Image
                   className="w-full h-full object-cover object-[20%] 2xl:object-top"
-                  style={{ objectPosition: "5%" }}
+                  style={{ objectPosition: '5%' }}
                   src={HeroImage}
                   placeholder="blur"
                   loading="eager"
