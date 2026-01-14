@@ -1,32 +1,34 @@
-import Image from "next/image";
-import React from "react";
-import CardImage from "../ui/CardImage";
-import SpaImage from "@/public/work/kiani/images/tst-2.png";
+import Image from 'next/image';
+import CardImage from '../ui/CardImageWrapper';
+/* TODO: Replace this images with SPA images */
+import CardImage1 from '../../images/card-image-1.png';
+import CardImage2 from '../../images/card-image-2.png';
 
+/* TODO: Replace this images with SPA images */
 const SPA_ITEMS = [
   {
     id: 1,
-    title: "Thermal Places",
+    title: 'Thermal Places',
     description:
-      "A spa is a perfect getaway for relaxation and rejuvenation. It offers a variety of treatments, from massages to facials, designed to pamper the body and mind. The serene environment helps to melt away stress and tension.",
+      'A spa is a perfect getaway for relaxation and rejuvenation. It offers a variety of treatments, from massages to facials, designed to pamper the body and mind. The serene environment helps to melt away stress and tension.',
     imageUrl:
-      "https://images.unsplash.com/photo-1544161515-4ab6ce6db874?q=80&w=2670&auto=format&fit=crop",
+      'https://images.unsplash.com/photo-1544161515-4ab6ce6db874?q=80&w=2670&auto=format&fit=crop',
   },
   {
     id: 2,
-    title: "Wellness Programs",
+    title: 'Wellness Programs',
     description:
-      "Comprehensive wellness programs tailored to your needs. From yoga sessions to meditation classes, we offer holistic approaches to health and well-being.",
+      'Comprehensive wellness programs tailored to your needs. From yoga sessions to meditation classes, we offer holistic approaches to health and well-being.',
     imageUrl:
-      "https://images.unsplash.com/photo-1506126613408-eca07ce68773?q=80&w=2599&auto=format&fit=crop",
+      'https://images.unsplash.com/photo-1506126613408-eca07ce68773?q=80&w=2599&auto=format&fit=crop',
   },
   {
     id: 3,
-    title: "Recovery Treatments",
+    title: 'Recovery Treatments',
     description:
-      "Specialized recovery treatments designed to restore balance and vitality. Our expert therapists use ancient techniques combined with modern practices.",
+      'Specialized recovery treatments designed to restore balance and vitality. Our expert therapists use ancient techniques combined with modern practices.',
     imageUrl:
-      "https://images.unsplash.com/photo-1540555700478-4be289fbecef?q=80&w=2670&auto=format&fit=crop",
+      'https://images.unsplash.com/photo-1540555700478-4be289fbecef?q=80&w=2670&auto=format&fit=crop',
   },
 ];
 
@@ -42,15 +44,19 @@ export default function SpaWellness() {
 
         {/* Image */}
         <CardImage
-          src={SpaImage}
+          src={CardImage2}
+          /* TODO: Fix alt attributes */
+          ariaHidden
           alt="."
           className="absolute right-0 -top-32 rotate-[4deg]"
         />
 
         {/* Image */}
         <CardImage
-          src={SpaImage}
+          src={CardImage1}
+          /* TODO: Fix alt attributes */
           alt="."
+          ariaHidden
           className="absolute left-0 -bottom-32 rotate-[-4deg]"
         />
       </div>

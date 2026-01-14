@@ -1,17 +1,17 @@
-import { constructMetadata } from "@/lib/siteConfig";
-import Philosophy from "@/app/kiani/components/sections/Philosophy";
-import SomeStays from "@/app/kiani/components/sections/SomeStays";
-import RoomsSuites from "@/app/kiani/components/sections/RoomsSuites";
-import SpaWellness from "@/app/kiani/components/sections/SpaWellness";
-import TestimonialSection from "@/app/kiani/components/sections/TestimonialSection";
-import Hero from "@/app/kiani/components/Hero";
-import Preloader from "@/app/kiani/components/Preloader";
-import Footer from "@/app/kiani/components/sections/Footer";
+import { constructMetadata } from '@/lib/siteConfig';
+import Philosophy from '@/app/kiani/components/sections/Philosophy';
+import SomeStays from '@/app/kiani/components/sections/SomeStays';
+import RoomsSuites from '@/app/kiani/components/sections/RoomsSuites';
+import SpaWellness from '@/app/kiani/components/sections/SpaWellness';
+import TestimonialSection from '@/app/kiani/components/sections/TestimonialSection';
+import Hero from '@/app/kiani/components/sections/Hero';
+import Preloader from '@/app/kiani/components/Preloader';
+import Footer from '@/app/kiani/components/sections/Footer';
 
 export const metadata = constructMetadata({
-  title: "Kiani Luxury Hotel & Spa",
+  title: 'Kiani Luxury Hotel & Spa',
   description:
-    "Experience timeless memories in the heart of Canggu, Bali. Kiani is a place designed for rest, recovery, and genuine connection.",
+    'Experience timeless memories in the heart of Canggu, Bali. Kiani is a place designed for rest, recovery, and genuine connection.',
 });
 
 export default function KianiHomePage() {

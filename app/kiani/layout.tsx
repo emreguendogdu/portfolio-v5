@@ -1,15 +1,15 @@
-import localFont from "next/font/local";
-import "./kiani.css";
+import localFont from 'next/font/local';
+import './kiani.css';
 
 const bosch = localFont({
-  src: "../../public/work/kiani/fonts/Bosch-Regular.otf",
-  variable: "--font-bosch",
-  display: "swap",
+  src: './fonts/Bosch-Regular.otf',
+  variable: '--font-bosch',
+  display: 'swap',
 });
 
 const satoshi = localFont({
-  src: "../../public/work/kiani/fonts/Satoshi-Regular.otf",
-  display: "swap",
+  src: './fonts/Satoshi-Regular.otf',
+  display: 'swap',
 });
 
 export default function KianiLayout({

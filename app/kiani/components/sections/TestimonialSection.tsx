@@ -1,6 +1,6 @@
-import CTA from "../ui/CTA";
-import FullScreenImageLayout from "../layouts/FullScreenImageLayout";
-import Image from "@/public/work/kiani/images/testimonial-image.png";
+import CTA from '../ui/CTA';
+import FullScreenImageLayout from '../layouts/FullScreenImageLayout';
+import Image from '../../images/testimonial-image.png';
 
 export default function TestimonialSection() {
   return (

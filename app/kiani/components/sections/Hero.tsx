@@ -1,14 +1,14 @@
 'use client';
 
 import Image from 'next/image';
-import HeroImage from '@/public/work/kiani/images/hero-img.png';
-import CardImage1 from '@/public/work/kiani/images/card-image-1.png';
-import CardImage2 from '@/public/work/kiani/images/card-image-2.png';
+import HeroImage from '../../images/hero-img.png';
+import CardImage1 from '../../images/card-image-1.png';
+import CardImage2 from '../../images/card-image-2.png';
 import { useGSAP } from '@gsap/react';
 import { SplitText } from 'gsap/SplitText';
 import gsap from 'gsap';
-import Header from './Header';
-import CardImage from './ui/CardImage';
+import Header from '../Header';
+import CardImageWrapper from '../ui/CardImageWrapper';
 
 gsap.registerPlugin(SplitText);
 
@@ -115,7 +115,7 @@ export default function Hero() {
           {/* Hotel Name & Images Wrapper */}
           <div className="relative items-center justify-center">
             {/* Image 1 */}
-            <CardImage
+            <CardImageWrapper
               src={CardImage1}
               className="absolute left-0 sm:left-6 2xl:-left-6 top-0 -translate-y-[45%] sm:-translate-y-[55%] rotate-[8deg]"
               /* TODO: Add alt text */
@@ -127,7 +127,7 @@ export default function Hero() {
             </h2>
 
             {/* Image 2 */}
-            <CardImage
+            <CardImageWrapper
               src={CardImage2}
               className="absolute -right-12 sm:right-2 2xl:right-12 -bottom-8 sm:bottom-0 translate-y-[35%] 2xl:translate-y-[20%] -rotate-[8deg]"
               /* TODO: Add alt text */
