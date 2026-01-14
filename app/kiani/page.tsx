@@ -1,12 +1,12 @@
 import { constructMetadata } from "@/lib/siteConfig";
-import Philosophy from "@/components/works/kiani/components/sections/Philosophy";
-import SomeStays from "@/components/works/kiani/components/sections/SomeStays";
-import RoomsSuites from "@/components/works/kiani/components/sections/RoomsSuites";
-import SpaWellness from "@/components/works/kiani/components/sections/SpaWellness";
-import TestimonialSection from "@/components/works/kiani/components/sections/TestimonialSection";
-import Hero from "@/components/works/kiani/components/Hero";
-import Preloader from "@/components/works/kiani/components/Preloader";
-import Footer from "@/components/works/kiani/components/sections/Footer";
+import Philosophy from "@/app/kiani/components/sections/Philosophy";
+import SomeStays from "@/app/kiani/components/sections/SomeStays";
+import RoomsSuites from "@/app/kiani/components/sections/RoomsSuites";
+import SpaWellness from "@/app/kiani/components/sections/SpaWellness";
+import TestimonialSection from "@/app/kiani/components/sections/TestimonialSection";
+import Hero from "@/app/kiani/components/Hero";
+import Preloader from "@/app/kiani/components/Preloader";
+import Footer from "@/app/kiani/components/sections/Footer";
 
 export const metadata = constructMetadata({
   title: "Kiani Luxury Hotel & Spa",

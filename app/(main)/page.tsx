@@ -1,14 +1,14 @@
-import { ReactLenis } from "lenis/react";
-import Footer from "@/components/Footer";
-import Header from "@/components/Header";
-import Hero from "@/components/Hero";
-import SelectedWorks from "@/components/SelectedWorks";
-import { constructMetadata } from "@/lib/siteConfig";
+import { ReactLenis } from 'lenis/react';
+import Footer from '@/components/(main)/Footer';
+import Header from '@/components/(main)/Header';
+import Hero from '@/components/(main)/Hero';
+import SelectedWorks from '@/components/(main)/SelectedWorks';
+import { constructMetadata } from '@/lib/siteConfig';
 
 export const metadata = constructMetadata({
-  title: "Creative Developer & Designer",
+  title: 'Creative Developer & Designer',
   description:
-    "Turkey-based Creative Developer & Designer crafting unforgettable, performance-driven digital experiences for E-Commerce, SaaS, and Luxury brands.",
+    'Turkey-based Creative Developer & Designer crafting unforgettable, performance-driven digital experiences for E-Commerce, SaaS, and Luxury brands.',
 });
 
 export default function Home() {
