@@ -1,9 +1,9 @@
-import gsap from "gsap";
-import { SplitText } from "gsap/SplitText";
-import { useGSAP } from "@gsap/react";
-import React from "react";
+import gsap from 'gsap';
+import { SplitText } from 'gsap/SplitText';
+import { useGSAP } from '@gsap/react';
+import React from 'react';
 
-const timelineDefaults = { duration: 1, ease: "power2.out" };
+const timelineDefaults = { duration: 1, ease: 'power2.out' };
 const lineAnimation = {
   start: { opacity: 0, rotate: 10, y: 100 },
   end: { opacity: 1, rotate: 0, y: 0, stagger: 0.2 },
@@ -18,43 +18,43 @@ export const usePreloaderAnimation = ({
   setStartHeroAnimation: React.Dispatch<React.SetStateAction<boolean>>;
 }) => {
   useGSAP(() => {
-    const starsContainer = document.getElementById("preloader-stars-container");
-    const preloaderElement = document.getElementById("preloader");
+    const starsContainer = document.getElementById('preloader-stars-container');
+    const preloaderElement = document.getElementById('preloader');
     if (!starsContainer || !preloaderElement) return;
     const stars = gsap.utils.toArray(starsContainer.children);
 
-    const splitH1 = SplitText.create("h1.second-text .split-target", {
-      type: "chars",
-      charsClass: "char",
+    const splitH1 = SplitText.create('h1.second-text .split-target', {
+      type: 'chars',
+      charsClass: 'char',
     });
 
-    const splitH2 = SplitText.create("h2.second-text", {
-      type: "lines",
-      linesClass: "line",
-      mask: "lines",
+    const splitH2 = SplitText.create('h2.second-text', {
+      type: 'lines',
+      linesClass: 'line',
+      mask: 'lines',
     });
 
-    const splitFirstText = SplitText.create("h2.first-text", {
-      type: "lines",
-      linesClass: "line",
-      mask: "lines",
+    const splitFirstText = SplitText.create('h2.first-text', {
+      type: 'lines',
+      linesClass: 'line',
+      mask: 'lines',
     });
 
     const tl = gsap.timeline({
       defaults: timelineDefaults,
       onStart: () => {
-        document?.getElementById("preloader")?.classList.remove("hidden");
+        document?.getElementById('preloader')?.classList.remove('hidden');
       },
       onComplete: () => {
         setStartHeroAnimation(true);
       },
     });
 
-    const isMobile = window.matchMedia("(max-width: 768px)").matches;
+    const isMobile = window.matchMedia('(max-width: 768px)').matches;
 
     tl.fromTo(splitFirstText.lines, lineAnimation.start, lineAnimation.end);
 
-    tl.to(splitFirstText.lines, lineAnimation.exit, "+=0.1");
+    tl.to(splitFirstText.lines, lineAnimation.exit, '+=0.1');
 
     tl.fromTo(
       stars,
@@ -67,7 +67,7 @@ export const usePreloaderAnimation = ({
         duration: 2,
         force3D: true,
       },
-      "<"
+      '<',
     );
 
     tl.fromTo(
@@ -78,58 +78,60 @@ export const usePreloaderAnimation = ({
         y: 0,
         stagger: 0.05,
       },
-      "<0.2"
+      '<0.2',
     );
 
-    tl.fromTo(splitH2.lines, lineAnimation.start, lineAnimation.end, "<");
+    tl.fromTo(splitH2.lines, lineAnimation.start, lineAnimation.end, '<');
 
     tl.to(
-      "#image-wrapper",
+      '#image-wrapper',
       {
-        width: isMobile ? "6.75rem" : "10.5rem",
+        width: isMobile ? '6.75rem' : '10.5rem',
       },
-      ">"
+      '>',
     );
     tl.to(
-      "#growing-image",
+      '#growing-image',
       {
-        width: "100%",
+        width: '100%',
       },
-      "<"
+      '<',
     )
       .to(
-        ".split-target:first-child",
+        '.split-target:first-child',
         {
-          x: "-0.05em",
+          x: '-0.05em',
         },
-        "<"
+        '<',
       )
       .to(
-        ".split-target:last-child",
+        '.split-target:last-child',
         {
-          x: "0.025em",
+          x: '0.025em',
         },
-        "<"
+        '<',
       );
 
     tl.to(
-      "#growing-image",
+      '#growing-image',
       {
-        width: "100vw",
-        height: "100svh",
+        width: '100vw',
+        height: '100dvh',
         duration: 2,
-        ease: "expo.out",
+        ease: 'expo.out',
       },
-      "+=0.5"
+      '+=0.5',
     ).to(
-      "#image-wrapper",
+      '#image-wrapper',
       {
-        width: "100vw",
-        height: "100svh",
+        width: '100vw',
+        height: '100dvh',
         duration: 2,
-        ease: "expo.out",
+        ease: 'expo.out',
       },
-      "<"
+      '<',
     );
+    tl.to(splitH2.lines, lineAnimation.exit, '<0.4');
+    tl.to('h2.second-text', { height: 0 }, '<0.4');
   });
 };

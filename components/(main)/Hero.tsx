@@ -83,7 +83,7 @@ export default function Hero() {
           y: '0%',
           rotate: '0deg',
           stagger: 0.08,
-        }
+        },
       );
 
       // 5. Image reveal - triggered slightly after the titles start
@@ -95,11 +95,11 @@ export default function Hero() {
             duration: 1.5,
             ease: 'expo.inOut',
           },
-          0.6 // Relative point in the timeline
+          0.6, // Relative point in the timeline
         );
       }
     },
-    { dependencies: [imageLoaded] }
+    { dependencies: [imageLoaded] },
   );
 
   return (
@@ -175,7 +175,7 @@ export default function Hero() {
         <p className="hero-scroll">Scroll</p>
         <div className="flex flex-col gap-2.5 sm:gap-5">
           <p className="hero-booking text-right">
-            Booking For — <br /> January 2026
+            Booking Projects For — <br /> Q2' 2026
           </p>
           <div className="relative">
             <div className="relative w-full h-full overflow-hidden hero-cta-wrapper">

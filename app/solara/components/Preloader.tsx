@@ -1,11 +1,11 @@
-"use client";
+'use client';
 
-import Image from "next/image";
-import { Fragment } from "react";
-import Star from "./ui/icons/Star";
-import BackgroundImage from "./images/hero-bg.png";
-import { usePreloaderAnimation } from "../hooks/usePreloaderAnimation";
-import { useAnimationContext } from "../context/AnimationContext";
+import Image from 'next/image';
+import { Fragment } from 'react';
+import Star from './ui/icons/Star';
+import BackgroundImage from './images/hero-bg.png';
+import { usePreloaderAnimation } from '../hooks/usePreloaderAnimation';
+import { useAnimationContext } from '../context/AnimationContext';
 
 export const Preloader = () => {
   const { setStartHeroAnimation } = useAnimationContext();
@@ -21,10 +21,10 @@ export const Preloader = () => {
         <h2 className="first-text">Welcome to...</h2>
       </div>
 
-      <div className="relative flex flex-col items-center justify-center gap-2.5">
+      <div className="relative flex flex-col items-center justify-center">
         <div
           id="preloader-stars-container"
-          className="absolute bottom-full left-0 right-0 flex justify-center items-center mb-2.5 text-background gap-1.25 sm:gap-2.5"
+          className="absolute bottom-full left-0 right-0 flex justify-center items-center text-background gap-1.25 sm:gap-2.5 h-[56px]"
         >
           {Array.from({ length: 5 }, (_, i) => (
             <Fragment key={`st__${i}`}>
@@ -39,7 +39,7 @@ export const Preloader = () => {
         <h1 className="second-text flex items-center justify-center overflow-hidden">
           <div
             className="split-target relative z-10 flex justify-end overflow-hidden"
-            style={{ width: "1.5em" }}
+            style={{ width: '1.5em' }}
           >
             <span>Sol</span>
           </div>
@@ -51,7 +51,7 @@ export const Preloader = () => {
             <div
               className="relative overflow-hidden"
               id="growing-image"
-              style={{ width: 0, height: "0.8em" }}
+              style={{ width: 0, height: '0.8em' }}
             >
               <Image
                 src={BackgroundImage}
@@ -62,13 +62,13 @@ export const Preloader = () => {
           </div>
           <div
             className="split-target relative z-10 flex justify-start overflow-hidden"
-            style={{ width: "1.5em" }}
+            style={{ width: '1.5em' }}
           >
             <span>ara</span>
           </div>
         </h1>
 
-        <h2 className="second-text relative z-10 overflow-hidden">
+        <h2 className="second-text whitespace-nowrap relative z-10 overflow-hidden h-[56px] leading-[1.5]">
           Grand & Aqua Hotel
         </h2>
       </div>
