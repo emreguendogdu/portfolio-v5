@@ -27,6 +27,11 @@ export function middleware(req: NextRequest) {
     return NextResponse.rewrite(url);
   }
 
+  if (hostname.startsWith("cozanest.")) {
+    url.pathname = `/cozanest${url.pathname}`;
+    return NextResponse.rewrite(url);
+  }
+
   return NextResponse.next();
 }
     

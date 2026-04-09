@@ -1,0 +1,85 @@
+@import "tailwindcss";
+
+:root {
+  --color-background: #fbf1e9;
+  --color-foreground: #262626;
+}
+
+@theme inline {
+  --color-background: var(--color-background);
+  --color-foreground: var(--color-foreground);
+  --font-sans: var(--font-dm-sans);
+  --font-serif: var(--font-editors-note);
+}
+
+body {
+  line-height: 1;
+  letter-spacing: -0.025em;
+  font-size: 1rem;
+  background-color: var(--color-background);
+  color: var(--color-foreground);
+}
+
+@layer base {
+  h1,
+  .h1 {
+    font-family: var(--font-editors-note);
+    font-size: 6rem;
+    line-height: 0.8;
+    font-weight: 400;
+    letter-spacing: -0.05em;
+    text-align: center;
+  }
+}
+
+@layer components {
+  .booking-bar {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    height: 40px;
+    overflow: clip;
+    border-radius: 4px;
+  }
+
+  .booking-bar-item {
+    flex-shrink: 0;
+    display: flex;
+    align-items: start;
+    padding: 10px 20px;
+    height: 100%;
+    font-size: 16px;
+    text-align: center;
+    letter-spacing: -0.05em;
+    white-space: nowrap;
+    border-right: 1px solid rgba(38, 38, 38, 0.2);
+    text-transform: uppercase;
+  }
+
+  .booking-bar-item:last-child {
+    border-right: none;
+  }
+}
+
+/* Hero overlay text */
+.hero-overlay-text {
+  font-family: var(--font-editors-note);
+  line-height: 0.8;
+  color: #f9f9f9;
+}
+
+@media screen and (max-width: 768px) {
+  h1,
+  .h1 {
+    font-size: 3rem;
+  }
+
+  .hero-overlay-text .coza-text {
+    font-size: 96px;
+    letter-spacing: -4.8px;
+  }
+
+  .hero-overlay-text .nest-text {
+    font-size: 48px;
+  }
+}

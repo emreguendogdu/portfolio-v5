@@ -105,36 +105,32 @@ export default function Hero() {
   return (
     <section
       id="hero"
-      className="relative w-full min-h-svh flex flex-col pt-[15svh] items-center justify-between gap-10 py-4 pb-6 sm:pb-10 overflow-hidden invisible"
+      className="relative w-full h-svh flex flex-col pt-[15svh] items-center justify-between gap-10 pb-6 sm:pb-10 overflow-hidden invisible"
     >
-      <div className="relative grid grid-cols-12 grid-rows-4 gap-2 sm:gap-6 z-10">
+      <div className="relative grid grid-cols-12 gap-2 sm:gap-6 z-10">
         <h1 className="sr-only">Web Design & Development Partner</h1>
 
         <div
           className="flex w-full col-span-full items-center justify-between sm:justify-start gap-2 sm:gap-10 xl:gap-20"
           aria-hidden
         >
-          <span className="h0 hero-title hero-title-1 hero-web">Web</span>
-          <span className="h0 hero-title hero-title-2 hero-design">Design</span>
-          <span className="h0 hero-title hero-title-3 hero-and">&</span>
+          <span className="h0 hero-web">Web</span>
+          <span className="h0 hero-design">Design</span>
+          <span className="h0 hero-and">&</span>
         </div>
 
         <div
-          className="relative h0 row-start-2 col-start-1 col-span-full sm:col-span-10 sm:col-start-3 z-10 hero-dev"
+          className="row-start-2 col-start-1 col-span-full sm:col-span-10 sm:col-start-3 z-10"
           aria-hidden
         >
-          <span className="h0 hero-title hero-title-4 hero-dev">
-            Development
-          </span>
+          <span className="h0 hero-dev">Development</span>
         </div>
 
         <div
-          className="w-full row-start-3 sm:col-start-7 col-span-9 hero-partner"
+          className="w-full row-start-3 sm:col-start-7 col-span-9"
           aria-hidden
         >
-          <span className="h0 hero-title hero-title-5 hero-partner" aria-hidden>
-            Partner
-          </span>
+          <span className="h0 hero-partner">Partner</span>
         </div>
       </div>
 
