@@ -61,6 +61,7 @@ export default function AnimatedText({
           mask: "lines",
           linesClass: "line++",
           lineThreshold: 0.1,
+          aria: "hidden",
         });
 
         splitRefs.current.push(split);

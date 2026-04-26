@@ -48,7 +48,7 @@ export default function SpaWellness() {
           /* TODO: Fix alt attributes */
           ariaHidden
           alt="."
-          className="absolute right-0 -top-32 rotate-[4deg]"
+          className="absolute right-0 -top-20 sm:-top-32 rotate-[4deg]"
         />
 
         {/* Image */}
@@ -57,7 +57,7 @@ export default function SpaWellness() {
           /* TODO: Fix alt attributes */
           alt="."
           ariaHidden
-          className="absolute left-0 -bottom-32 rotate-[-4deg]"
+          className="absolute left-0 -bottom-20 sm:-bottom-32 rotate-[-4deg]"
         />
       </div>
 
@@ -79,9 +79,9 @@ export default function SpaWellness() {
         {SPA_ITEMS.map((item) => (
           <div
             key={item.id}
-            className="grid grid-cols-12 gap-x-10 w-full py-5 border-t border-t-black/20"
+            className="flex flex-col gap-5 md:grid md:grid-cols-12 md:gap-x-10 w-full py-5 border-t border-t-black/20"
           >
-            <div className="col-span-5 relative h-[40vh] overflow-hidden">
+            <div className="relative h-[40vh] overflow-hidden md:col-span-5">
               <Image
                 src={item.imageUrl}
                 alt={item.title}
@@ -90,7 +90,7 @@ export default function SpaWellness() {
               />
             </div>
 
-            <div className="col-start-7 col-span-3 h-full flex flex-col justify-between">
+            <div className="flex flex-col gap-3 md:col-start-7 md:col-span-3 md:h-full md:justify-between md:gap-0">
               <h3 className="secondary-text">{item.title}</h3>
               <p>{item.description}</p>
             </div>

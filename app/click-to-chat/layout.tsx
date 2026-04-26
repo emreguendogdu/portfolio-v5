@@ -13,6 +13,8 @@ const neueMontreal = localFont({
   display: 'swap',
 });
 
+const themeInitScript = `(function(){try{var t=localStorage.getItem('ctc_theme');if(!t){t=window.matchMedia('(prefers-color-scheme: light)').matches?'light':'dark';}if(t==='light'){document.documentElement.dataset.theme='light';}}catch(e){}})();`;
+
 export default function ClickToChatLayout({
   children,
 }: {
@@ -20,6 +22,7 @@ export default function ClickToChatLayout({
 }) {
   return (
     <div className={`${objectSans.variable} ${neueMontreal.variable} antialiased`}>
+      <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
       {children}
     </div>
   );

@@ -13,7 +13,7 @@ export default function Philosophy() {
   return (
     <section
       id="philosophy"
-      className="relative min-h-svh w-full px-10 py-12.5 flex flex-col gap-30"
+      className="relative min-h-svh w-full px-10 py-12.5 flex flex-col gap-20"
     >
       {/* Heading */}
       <h2>Philosophy</h2>
@@ -21,9 +21,9 @@ export default function Philosophy() {
       {/* TOP: TEXT + IMAGE */}
       <div className="grid grid-cols-[1fr_30vw] gap-x-20 w-full">
         {/* LEFT COLUMN */}
-        <div className="flex flex-col gap-20">
+        <div className="flex flex-col gap-12">
           {/* Paragraphs */}
-          <div className="grid grid-cols-12 gap-x-10 gap-y-10 w-full">
+          <div className="grid grid-cols-12 gap-x-10 gap-y-6 w-full">
             <p className="col-span-6 lg:col-span-4">
               Kiani was created as a <br />
               response to excess.
@@ -63,7 +63,7 @@ export default function Philosophy() {
       </div>
 
       {/* BOTTOM: OFFERING + LIST */}
-      <div className="grid grid-cols-[1fr_30vw] gap-x-20 w-full">
+      <div className="grid grid-cols-[1fr_30vw] gap-x-20 w-full items-end">
         {/* LEFT COLUMN */}
         <div className="grid grid-cols-12 gap-x-10 w-full">
           <span className="secondary-text font-bold col-start-5 col-span-4">

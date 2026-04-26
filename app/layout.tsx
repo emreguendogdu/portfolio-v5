@@ -1,4 +1,10 @@
-import "./globals.css";
+import type { Metadata } from 'next';
+import './globals.css';
+import { PORTFOLIO_SITE_LINK, personSchema } from '@/lib/siteConfig';
+
+export const metadata: Metadata = {
+  metadataBase: new URL(PORTFOLIO_SITE_LINK),
+};
 
 export default function RootLayout({
   children,
@@ -7,7 +13,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body>
+        {children}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(personSchema) }}
+        />
+      </body>
     </html>
   );
 }

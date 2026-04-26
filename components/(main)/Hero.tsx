@@ -5,132 +5,102 @@ import gsap from 'gsap';
 import { SplitText } from 'gsap/SplitText';
 import CtaButton from './ui/CtaButton';
 import Image from 'next/image';
-import { useState } from 'react';
 
 gsap.registerPlugin(SplitText);
 
 const animStart = 0.2;
 
 export default function Hero() {
-  const [imageLoaded, setImageLoaded] = useState<boolean>(false);
+  useGSAP(() => {
+    const tl = gsap.timeline({
+      delay: animStart,
+      defaults: {
+        ease: 'power4.out',
+        duration: 1.2,
+      },
+    });
 
-  useGSAP(
-    () => {
-      gsap.set('#hero', { visibility: 'visible' });
-      gsap.set('header', { visibility: 'visible' });
-      const tl = gsap.timeline({
-        delay: animStart,
-        defaults: {
-          ease: 'power4.out',
-          duration: 1.2,
-        },
-      });
+    const splits: SplitText[] = [];
 
-      const splits: SplitText[] = [];
+    const sequence = [
+      '.header-build',
+      '.header-logo',
+      '.header-location',
+      '.header-time',
+      '.hero-web',
+      '.hero-design',
+      '.hero-and',
+      '.hero-dev',
+      '.hero-partner',
+      '.hero-p',
+      '.hero-scroll',
+      '.hero-booking',
+      '.hero-cta',
+    ];
 
-      // 1. Define the items in the order they should animate
-      const sequence = [
-        '.header-build',
-        '.header-logo',
-        '.header-location',
-        '.header-time',
-        '.hero-web',
-        '.hero-design',
-        '.hero-and',
-        '.hero-dev',
-        '.hero-partner',
-        '.hero-p',
-        '.hero-scroll',
-        '.hero-booking',
-        '.hero-cta',
-      ];
+    const targets: Element[] = [];
+    sequence.forEach((selector) => {
+      const el = document.querySelector(selector);
+      if (!el) return;
 
-      // 2. Process items into targets (splitting text where needed)
-      const targets: Element[] = [];
-      sequence.forEach((selector) => {
-        const el = document.querySelector(selector);
-        if (!el) return;
+      const shouldSplit = !['.header-logo', '.hero-cta'].includes(selector);
 
-        // Header logo and CTA button shouldn't be split into lines
-        const shouldSplit = !['.header-logo', '.hero-cta'].includes(selector);
-
-        if (shouldSplit) {
-          const split = new SplitText(el, {
-            type: 'lines',
-            linesClass: 'line-mask',
-            mask: 'lines',
-          });
-          splits.push(split);
-          if (split.lines) targets.push(...(split.lines as any));
-        } else {
-          targets.push(el);
-        }
-      });
-
-      // 3. Initial states
-      gsap.set('#hero-img-wrapper', {
-        clipPath: 'inset(100% 0% 0% 0%)',
-      });
-
-      // 4. Animate everything in one go with a single stagger
-      tl.fromTo(
-        targets,
-        {
-          y: '200%',
-          rotate: '4deg',
-        },
-        {
-          y: '0%',
-          rotate: '0deg',
-          stagger: 0.08,
-        },
-      );
-
-      // 5. Image reveal - triggered slightly after the titles start
-      if (imageLoaded) {
-        tl.to(
-          '#hero-img-wrapper',
-          {
-            clipPath: 'inset(0% 0% 0% 0%)',
-            duration: 1.5,
-            ease: 'expo.inOut',
-          },
-          0.6, // Relative point in the timeline
-        );
+      if (shouldSplit) {
+        const split = new SplitText(el, {
+          type: 'lines',
+          linesClass: 'line-mask',
+          mask: 'lines',
+          aria: 'hidden',
+        });
+        splits.push(split);
+        if (split.lines) targets.push(...(split.lines as any));
+        gsap.set(split.lines, { y: '200%', rotate: '4deg' });
+        gsap.set(el, { visibility: 'visible' });
+      } else {
+        targets.push(el);
+        gsap.set(el, { y: '200%', rotate: '4deg', visibility: 'visible' });
       }
-    },
-    { dependencies: [imageLoaded] },
-  );
+    });
+
+    tl.to(targets, {
+      y: '0%',
+      rotate: '0deg',
+      stagger: 0.08,
+    });
+  });
 
   return (
     <section
       id="hero"
-      className="relative w-full h-svh flex flex-col pt-[15svh] items-center justify-between gap-10 pb-6 sm:pb-10 overflow-hidden invisible"
+      className="relative w-full h-svh flex flex-col pt-[15svh] items-center justify-between gap-10 pb-6 sm:pb-10 overflow-hidden"
     >
       <div className="relative grid grid-cols-12 gap-2 sm:gap-6 z-10">
-        <h1 className="sr-only">Web Design & Development Partner</h1>
+        <h1 className="sr-only">
+          Emre Gundogdu (Emre Gündoğdu) — Freelance Front-End Developer & Web
+          Design and Development Partner
+        </h1>
 
         <div
           className="flex w-full col-span-full items-center justify-between sm:justify-start gap-2 sm:gap-10 xl:gap-20"
           aria-hidden
         >
-          <span className="h0 hero-web">Web</span>
-          <span className="h0 hero-design">Design</span>
-          <span className="h0 hero-and">&</span>
+          <span className="h0 hero-web invisible">Web</span>
+          <span className="h0 hero-design invisible">Design</span>
+          <span className="h0 hero-and invisible">&</span>
         </div>
 
         <div
           className="row-start-2 col-start-1 col-span-full sm:col-span-10 sm:col-start-3 z-10"
           aria-hidden
         >
-          <span className="h0 hero-dev">Development</span>
+          <span className="h0 hero-dev invisible">Development</span>
         </div>
 
         <div
           className="w-full row-start-3 sm:col-start-7 col-span-9"
           aria-hidden
         >
-          <span className="h0 hero-partner">Partner</span>
+          <span className="h0 hero-partner invisible">Partner</span>
         </div>
       </div>
 
@@ -147,10 +117,11 @@ export default function Hero() {
                 src="/images/pp.webp"
                 alt="Personal image"
                 priority
+                fetchPriority="high"
                 fill
+                sizes="(min-width: 640px) 304px, 145px"
                 className="object-center object-cover"
                 id="hero-img"
-                onLoad={() => setImageLoaded(true)}
               />
 
               <div className="absolute inset-0 z-10 bg-radial from-transparent via-transparent to-background" />
@@ -158,7 +129,7 @@ export default function Hero() {
           </div>
 
           <div className="flex items-end justify-end">
-            <p className="hero-p xl:ml-10 max-w-auto sm:max-w-[300px] xl:max-w-[300px]">
+            <p className="hero-p xl:ml-10 max-w-auto sm:max-w-[300px] xl:max-w-[300px] invisible">
               Building web experiences where <br /> high-end aesthetics meet
               raw, <br />
               conversion-focused engineering.
@@ -168,9 +139,9 @@ export default function Hero() {
       </div>
 
       <div className="w-full flex items-end justify-between gap-4">
-        <p className="hero-scroll">Scroll</p>
+        <p className="hero-scroll invisible">Scroll</p>
         <div className="flex flex-col gap-2.5 sm:gap-5">
-          <p className="hero-booking text-right">
+          <p className="hero-booking text-right invisible">
             Booking Projects For — <br /> Q2' 2026
           </p>
           <div className="relative">
@@ -178,7 +149,7 @@ export default function Hero() {
               <CtaButton
                 text="Schedule a Call"
                 type="small"
-                className="hero-cta"
+                className="hero-cta invisible"
                 href="https://cal.com/emregnd/inquiry"
               />
             </div>

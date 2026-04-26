@@ -3,7 +3,21 @@
 :root {
   --color-background: #0d0d0d;
   --color-foreground: #f1efec;
-  --dim: 0.9;
+  --dim: 0.85;          /* secondary text, ≥ 4.5:1 both themes */
+  --dim-chrome: 0.7;    /* tertiary chrome text, ≥ 4.5:1 both themes */
+  --tone: 100%;
+  --surface-overlay: oklch(10% 0 0 / 88%);
+  --border-ui: oklch(100% 0 0 / 40%);     /* essential UI ≥ 3:1 */
+  --border-input: oklch(100% 0 0 / 40%);  /* input boundary ≥ 3:1 */
+}
+
+:root[data-theme="light"] {
+  --color-background: #f1efec;
+  --color-foreground: #161819;
+  --tone: 0%;
+  --surface-overlay: oklch(96% 0 0 / 92%);
+  --border-ui: oklch(0% 0 0 / 50%);
+  --border-input: oklch(0% 0 0 / 50%);
 }
 
 @theme inline {
@@ -15,6 +29,11 @@
 
 html {
   background-color: var(--color-background);
+  transition: background-color 0.3s ease;
+}
+
+body {
+  transition: background 0.3s ease, color 0.3s ease;
 }
 
 body {
@@ -33,9 +52,9 @@ body {
     opacity: var(--dim);
   }
 
-  /* Chrome dim — nav/footer chrome, matches placeholder zeros */
+  /* Chrome dim — nav/footer chrome */
   .dim-chrome {
-    opacity: 0.2;
+    opacity: var(--dim-chrome);
   }
 
   .h0 {
@@ -44,6 +63,47 @@ body {
     font-size: clamp(2.25rem, 5vw + 1rem, 9rem);
     line-height: 0.88;
     letter-spacing: -0.05em;
+  }
+
+  /* WhatsApp eyebrow chip — small primary-keyword tag above title */
+  .ctc-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    align-self: flex-start;
+    padding: 0.375rem 0.75rem;
+    border: 1px solid oklch(var(--tone) 0 0 / 14%);
+    border-radius: 999px;
+    font-family: var(--font-object-sans), sans-serif;
+    font-size: 0.7rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-foreground);
+    opacity: 0.85;
+    background: oklch(var(--tone) 0 0 / 3%);
+    width: max-content;
+  }
+
+  .ctc-eyebrow-dot {
+    display: inline-block;
+    width: 0.45rem;
+    height: 0.45rem;
+    border-radius: 50%;
+    background: #25d366;
+    box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.6);
+    animation: ctc-pulse 2.4s ease-out infinite;
+  }
+
+  @keyframes ctc-pulse {
+    0% {
+      box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.5);
+    }
+    70% {
+      box-shadow: 0 0 0 6px rgba(37, 211, 102, 0);
+    }
+    100% {
+      box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
+    }
   }
 
   /* Giant phone display text */
@@ -76,7 +136,7 @@ body {
 
   .phone-input::placeholder {
     color: var(--color-foreground);
-    opacity: 0.2;
+    opacity: 0.55;
   }
 
   /* Prefix trigger button */
@@ -93,21 +153,21 @@ body {
   }
 
   .prefix-trigger:focus-visible {
-    outline: 1px solid oklch(100% 0 0 / 30%);
+    outline: 1px solid oklch(var(--tone) 0 0 / 30%);
     outline-offset: 4px;
     border-radius: 2px;
   }
 
   .prefix-chevron {
     color: var(--color-foreground);
-    opacity: 0.35;
+    opacity: 0.65;
     align-self: center;
     margin-bottom: 0.15em;
     flex-shrink: 0;
   }
 
   .prefix-trigger:hover .prefix-chevron {
-    opacity: 0.7;
+    opacity: 1;
   }
 
   /* Action buttons */
@@ -117,7 +177,7 @@ body {
     justify-content: space-between;
     gap: 0.75rem;
     padding: 0.875rem 1.25rem;
-    border: 1px solid oklch(100% 0 0 / 18%);
+    border: 1px solid var(--border-ui);
     border-radius: 0.5rem;
     font-family: var(--font-object-sans), sans-serif;
     font-size: clamp(0.7rem, 0.9vw + 0.4rem, 0.9rem);
@@ -147,7 +207,7 @@ body {
   .ctc-divider {
     width: 100%;
     height: 1px;
-    background: oklch(100% 0 0 / 12%);
+    background: oklch(var(--tone) 0 0 / 12%);
     transform-origin: left;
   }
 
@@ -155,13 +215,13 @@ body {
   .input-underline {
     width: 100%;
     height: 1px;
-    background: oklch(100% 0 0 / 15%);
+    background: var(--border-input);
     margin-top: 0.5rem;
     transition: background 0.2s ease;
   }
 
   .input-area:focus-within .input-underline {
-    background: oklch(100% 0 0 / 50%);
+    background: var(--color-foreground);
   }
 
   /* ─── Country dropdown ─────────────────────────────────────────────────── */
@@ -169,15 +229,15 @@ body {
   .country-dropdown {
     position: fixed;
     z-index: 9999;
-    background: oklch(10% 0 0 / 88%);
+    background: var(--surface-overlay);
     backdrop-filter: blur(28px) saturate(160%);
     -webkit-backdrop-filter: blur(28px) saturate(160%);
-    border: 1px solid oklch(100% 0 0 / 11%);
+    border: 1px solid oklch(var(--tone) 0 0 / 11%);
     border-radius: 0.875rem;
     box-shadow:
       0 2px 8px oklch(0% 0 0 / 30%),
       0 16px 40px oklch(0% 0 0 / 50%),
-      inset 0 1px 0 oklch(100% 0 0 / 8%);
+      inset 0 1px 0 oklch(var(--tone) 0 0 / 8%);
     overflow: hidden;
     animation: dropdown-in 0.18s cubic-bezier(0.22, 1, 0.36, 1) both;
   }
@@ -199,7 +259,7 @@ body {
     align-items: center;
     gap: 0.625rem;
     padding: 0.75rem 1rem;
-    border-bottom: 1px solid oklch(100% 0 0 / 8%);
+    border-bottom: 1px solid oklch(var(--tone) 0 0 / 8%);
     position: relative;
   }
 
@@ -218,7 +278,7 @@ body {
 
   .country-search-input::placeholder {
     color: var(--color-foreground);
-    opacity: 0.3;
+    opacity: 0.55;
     text-transform: uppercase;
     letter-spacing: 0.06em;
     font-size: 0.72rem;
@@ -228,7 +288,7 @@ body {
     background: transparent;
     border: none;
     color: var(--color-foreground);
-    opacity: 0.35;
+    opacity: 0.7;
     cursor: pointer;
     font-size: 1.1rem;
     line-height: 1;
@@ -237,7 +297,7 @@ body {
   }
 
   .country-search-clear:hover {
-    opacity: 0.7;
+    opacity: 1;
   }
 
   /* Country list */
@@ -245,7 +305,7 @@ body {
     max-height: 280px;
     overflow-y: auto;
     scrollbar-width: thin;
-    scrollbar-color: oklch(100% 0 0 / 12%) transparent;
+    scrollbar-color: oklch(var(--tone) 0 0 / 12%) transparent;
     padding: 0.375rem 0;
     list-style: none;
     margin: 0;
@@ -258,7 +318,7 @@ body {
     background: transparent;
   }
   .country-list::-webkit-scrollbar-thumb {
-    background: oklch(100% 0 0 / 12%);
+    background: oklch(var(--tone) 0 0 / 12%);
     border-radius: 2px;
   }
 
@@ -274,11 +334,11 @@ body {
   }
 
   .country-item-active {
-    background: oklch(100% 0 0 / 7%);
+    background: oklch(var(--tone) 0 0 / 7%);
   }
 
   .country-item-selected {
-    background: oklch(100% 0 0 / 5%);
+    background: oklch(var(--tone) 0 0 / 5%);
   }
 
   .country-item-selected .country-code {
@@ -310,7 +370,7 @@ body {
     font-family: var(--font-neue-montreal), sans-serif;
     font-size: 0.8rem;
     color: var(--color-foreground);
-    opacity: 0.4;
+    opacity: 0.7;
     flex-shrink: 0;
     letter-spacing: -0.02em;
   }
@@ -319,9 +379,34 @@ body {
     padding: 1.25rem 1rem;
     text-align: center;
     font-size: 0.78rem;
-    opacity: 0.35;
+    opacity: 0.7;
     text-transform: uppercase;
     letter-spacing: 0.06em;
+  }
+
+  /* Theme toggle */
+  .theme-toggle {
+    background: transparent;
+    border: none;
+    padding: 0.25rem;
+    cursor: pointer;
+    color: var(--color-foreground);
+    opacity: 0.7;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.2s ease;
+  }
+
+  .theme-toggle:hover {
+    opacity: 1;
+  }
+
+  .theme-toggle:focus-visible {
+    outline: 1px solid oklch(var(--tone) 0 0 / 30%);
+    outline-offset: 4px;
+    border-radius: 2px;
+    opacity: 1;
   }
 
   /* Feedback flash */
@@ -335,6 +420,6 @@ body {
   }
 
   .feedback-tag-visible {
-    opacity: 0.6;
+    opacity: 0.85;
   }
 }

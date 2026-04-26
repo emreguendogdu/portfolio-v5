@@ -87,8 +87,8 @@ const ProjectElement = ({
         onMouseLeave={() => setHovered(false)}
         className={!!project.url ? 'cursor-pointer' : 'cursor-default'}
         target="_blank"
+        aria-label={`${project.title} — ${project.shortDescription}`}
         onClick={(e) => {
-          // TODO: Remove this and add conditional render for Link element.
           if (!project.url) {
             e.preventDefault();
             e.stopPropagation();
@@ -108,6 +108,7 @@ const ProjectElement = ({
             src={project.imageSource}
             alt={`${project.title} presentation`}
             fill
+            sizes="(min-width: 640px) 50vw, 100vw"
             aria-hidden
             ref={projectImageRef}
             loading="lazy"

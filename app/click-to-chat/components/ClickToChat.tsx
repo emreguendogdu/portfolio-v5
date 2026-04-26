@@ -432,6 +432,7 @@ export default function ClickToChat() {
   const [modKey, setModKey] = useState<string>('Alt+');
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [dropdownPos, setDropdownPos] = useState<DropdownPos>({ top: 0, left: 0, width: 320 });
+  const [theme, setTheme] = useState<'dark' | 'light'>('dark');
 
   const numberRef = useRef<HTMLInputElement>(null);
   const triggerRef = useRef<HTMLButtonElement>(null);
@@ -446,13 +447,35 @@ export default function ClickToChat() {
   const waWebUrl = `https://web.whatsapp.com/send?phone=${fullNumber}`;
   const waAppUrl = `https://wa.me/${fullNumber}`;
 
-  // Persist prefix + detect OS modifier key
+  // Persist prefix + detect OS modifier key + sync theme from html
   useEffect(() => {
     setMounted(true);
     const saved = localStorage.getItem('ctc_prefix');
     if (saved) setPrefix(saved);
     const isMac = /Mac|iPhone|iPad|iPod/.test(navigator.platform);
     setModKey(isMac ? '⌥' : 'Alt');
+    const initial = (document.documentElement.dataset.theme as 'light' | 'dark') || 'dark';
+    setTheme(initial);
+  }, []);
+
+  // Cleanup theme attr when leaving route
+  useEffect(() => {
+    return () => {
+      delete document.documentElement.dataset.theme;
+    };
+  }, []);
+
+  const toggleTheme = useCallback(() => {
+    setTheme((t) => {
+      const next = t === 'dark' ? 'light' : 'dark';
+      if (next === 'light') {
+        document.documentElement.dataset.theme = 'light';
+      } else {
+        delete document.documentElement.dataset.theme;
+      }
+      try { localStorage.setItem('ctc_theme', next); } catch {}
+      return next;
+    });
   }, []);
 
   useEffect(() => {
@@ -528,6 +551,7 @@ export default function ClickToChat() {
 
       gsap.set('#ctc-nav', { opacity: 0, y: -20 });
       gsap.set('#ctc-footer', { opacity: 0 });
+      gsap.set('#ctc-eyebrow', { opacity: 0, y: 12 });
       gsap.set(
         ['#ctc-divider-1', '#ctc-divider-2', '.input-underline'],
         { scaleX: 0, transformOrigin: 'left' },
@@ -543,7 +567,8 @@ export default function ClickToChat() {
         delay: 0.1,
       });
 
-      tl.from(titleSplit.lines, { y: '110%', stagger: 0.07 })
+      tl.to('#ctc-eyebrow', { opacity: 1, y: 0, duration: 0.6 })
+        .from(titleSplit.lines, { y: '110%', stagger: 0.07 }, '<0.05')
         .to('#ctc-nav', { opacity: 1, y: 0, duration: 0.8 }, '<0.15')
         .to('#ctc-divider-1', { scaleX: 1, duration: 1, ease: 'expo.inOut' }, '<0.25')
         .to('#ctc-desc', { opacity: 1, y: 0, duration: 0.7 }, '<0.15')
@@ -552,7 +577,7 @@ export default function ClickToChat() {
         .to('.input-underline', { scaleX: 1, duration: 0.9, ease: 'expo.inOut' }, '<0.2')
         .to('#ctc-divider-2', { scaleX: 1, duration: 0.8, ease: 'expo.inOut' }, '<0.3')
         .to('#ctc-actions', { opacity: 1, y: 0, duration: 0.7 }, '<0.2')
-        .to('#ctc-footer', { opacity: 0.2, duration: 0.6 }, '<0.3');
+        .to('#ctc-footer', { opacity: 0.7, duration: 0.6 }, '<0.3');
     },
     { scope: containerRef },
   );
@@ -607,14 +632,27 @@ export default function ClickToChat() {
             Open Source
           </span>
 
-          <RotatingSalutation />
+          <div className="flex items-center gap-3 sm:gap-4">
+            <ThemeToggle theme={theme} onToggle={toggleTheme} />
+            <RotatingSalutation />
+          </div>
         </nav>
 
         {/* Content */}
         <div className="flex-1 flex flex-col justify-center gap-4 sm:gap-5 py-6 sm:py-8">
+          {/* Eyebrow tag — primary keyword for SEO/GEO */}
+          <span id="ctc-eyebrow" className="ctc-eyebrow" aria-hidden="true">
+            <span className="ctc-eyebrow-dot" />
+            WhatsApp
+          </span>
+
           {/* Title */}
           <div className="overflow-hidden">
-            <h1 id="ctc-title" className="h0">
+            <h1
+              id="ctc-title"
+              className="h0"
+              aria-label="WhatsApp Click To Chat"
+            >
               Click
               <br />
               To Chat
@@ -792,5 +830,44 @@ function ActionButton({
     >
       {inner}
     </a>
+  );
+}
+
+function ThemeToggle({
+  theme,
+  onToggle,
+}: {
+  theme: 'dark' | 'light';
+  onToggle: () => void;
+}) {
+  const isDark = theme === 'dark';
+  return (
+    <button
+      type="button"
+      onClick={onToggle}
+      className="theme-toggle"
+      aria-label={`Switch to ${isDark ? 'light' : 'dark'} mode`}
+      title={`Switch to ${isDark ? 'light' : 'dark'} mode`}
+    >
+      {isDark ? (
+        // Moon
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+          <path d="M13.5 9.5A5.5 5.5 0 1 1 6.5 2.5a4.5 4.5 0 0 0 7 7z" />
+        </svg>
+      ) : (
+        // Sun
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+          <circle cx="8" cy="8" r="3" />
+          <line x1="8" y1="1.5" x2="8" y2="3" />
+          <line x1="8" y1="13" x2="8" y2="14.5" />
+          <line x1="1.5" y1="8" x2="3" y2="8" />
+          <line x1="13" y1="8" x2="14.5" y2="8" />
+          <line x1="3.4" y1="3.4" x2="4.5" y2="4.5" />
+          <line x1="11.5" y1="11.5" x2="12.6" y2="12.6" />
+          <line x1="3.4" y1="12.6" x2="4.5" y2="11.5" />
+          <line x1="11.5" y1="4.5" x2="12.6" y2="3.4" />
+        </svg>
+      )}
+    </button>
   );
 }

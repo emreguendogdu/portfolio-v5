@@ -16,7 +16,7 @@ export const metadata = constructMetadata({
 
 export default function KianiHomePage() {
   return (
-    <main className="relative flex flex-col gap-30 bg-background">
+    <main className="relative flex flex-col gap-30 bg-background overflow-x-clip">
       <Preloader />
       <Hero />
       <Philosophy />

@@ -5,11 +5,7 @@ import Hero from '@/components/(main)/Hero';
 import SelectedWorks from '@/components/(main)/SelectedWorks';
 import { constructMetadata } from '@/lib/siteConfig';
 
-export const metadata = constructMetadata({
-  title: 'Creative Developer & Designer',
-  description:
-    'Turkey-based Creative Developer & Designer crafting unforgettable, performance-driven digital experiences for E-Commerce, SaaS, and Luxury brands.',
-});
+export const metadata = constructMetadata();
 
 export default function Home() {
   return (

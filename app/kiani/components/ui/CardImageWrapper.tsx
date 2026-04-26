@@ -17,7 +17,7 @@ export default function CardImageWrapper({
   return (
     <div
       className={cn(
-        'card-image-wrapper w-auto aspect-square h-[120px] 2xl:h-[180px] bg-white flex p-[5px] z-10',
+        'card-image-wrapper w-auto aspect-square h-[70px] sm:h-[120px] 2xl:h-[180px] bg-white flex p-[5px] z-10',
         className
       )}
       aria-hidden={ariaHidden}
