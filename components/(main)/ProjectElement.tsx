@@ -108,7 +108,7 @@ const ProjectElement = ({
             src={project.imageSource}
             alt={`${project.title} presentation`}
             fill
-            sizes="(min-width: 640px) 50vw, 100vw"
+            sizes="(min-width: 640px) 45vw, 85vw"
             aria-hidden
             ref={projectImageRef}
             loading="lazy"
@@ -146,7 +146,7 @@ const ProjectElement = ({
         </div>
 
         <AnimatedText>
-          <p className="opacity-50 w-1/3 text-right">
+          <p className="text-muted w-1/3 text-right">
             {project.shortDescription}
           </p>
         </AnimatedText>

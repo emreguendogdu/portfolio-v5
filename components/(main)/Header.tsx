@@ -16,7 +16,7 @@ export default function Header({ className }: { className?: string }) {
       )}
     >
       <div className="flex gap-1.75 items-center">
-        <p className="header-anim-item header-build opacity-50 capitalize hidden sm:block invisible">
+        <p className="header-anim-item header-build text-muted capitalize hidden sm:block invisible">
           Currently building — <br />
           v1.0
         </p>
@@ -27,7 +27,7 @@ export default function Header({ className }: { className?: string }) {
         </div>
       </div>
 
-      <div className="text-right opacity-50">
+      <div className="text-right text-muted">
         <div className="header-anim-item header-location invisible">
           <p>Istanbul, TR</p>
         </div>

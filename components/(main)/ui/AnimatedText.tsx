@@ -53,9 +53,15 @@ export default function AnimatedText({
         elements = [containerRef.current];
       }
 
-      elements.forEach((element) => {
+      // Pass 1: read computed styles BEFORE any DOM writes (avoid layout thrash)
+      const indents = elements.map((element) => {
         elementRefs.current.push(element);
+        const textIndent = window.getComputedStyle(element).textIndent;
+        return textIndent && textIndent !== "0px" ? textIndent : null;
+      });
 
+      // Pass 2: create all SplitText instances (batched DOM writes)
+      elements.forEach((element) => {
         const split = SplitText.create(element, {
           type: "words, lines",
           mask: "lines",
@@ -63,26 +69,21 @@ export default function AnimatedText({
           lineThreshold: 0.1,
           aria: "hidden",
         });
-
         splitRefs.current.push(split);
-
-        const computedStyle = window.getComputedStyle(element);
-        const textIndent = computedStyle.textIndent;
-
-        if (textIndent && textIndent !== "0px") {
-          if (split.lines && split.lines.length > 0) {
-            const firstLine = split.lines[0] as HTMLElement;
-            if (firstLine) {
-              firstLine.style.paddingLeft = textIndent;
-            }
-          }
-          const htmlElement = element as HTMLElement;
-          htmlElement.style.textIndent = "0";
-        }
-
         if (split.lines) {
           lines.current.push(...split.lines);
         }
+      });
+
+      // Pass 3: apply text-indent fixes from cached reads
+      elements.forEach((element, i) => {
+        const textIndent = indents[i];
+        if (!textIndent) return;
+        const split = splitRefs.current[i];
+        if (split?.lines && split.lines.length > 0) {
+          (split.lines[0] as HTMLElement).style.paddingLeft = textIndent;
+        }
+        (element as HTMLElement).style.textIndent = "0";
       });
 
       // Show container and set line initial states

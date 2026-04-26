@@ -21,6 +21,7 @@ export default function Hero() {
     });
 
     const splits: SplitText[] = [];
+    const noSplit = new Set(['.header-logo', '.hero-cta']);
 
     const sequence = [
       '.header-build',
@@ -38,14 +39,15 @@ export default function Hero() {
       '.hero-cta',
     ];
 
-    const targets: Element[] = [];
+    type Entry = { el: Element; split?: SplitText };
+    const entries: Entry[] = [];
+
     sequence.forEach((selector) => {
       const el = document.querySelector(selector);
       if (!el) return;
-
-      const shouldSplit = !['.header-logo', '.hero-cta'].includes(selector);
-
-      if (shouldSplit) {
+      if (noSplit.has(selector)) {
+        entries.push({ el });
+      } else {
         const split = new SplitText(el, {
           type: 'lines',
           linesClass: 'line-mask',
@@ -53,14 +55,29 @@ export default function Hero() {
           aria: 'hidden',
         });
         splits.push(split);
-        if (split.lines) targets.push(...(split.lines as any));
-        gsap.set(split.lines, { y: '200%', rotate: '4deg' });
-        gsap.set(el, { visibility: 'visible' });
-      } else {
-        targets.push(el);
-        gsap.set(el, { y: '200%', rotate: '4deg', visibility: 'visible' });
+        entries.push({ el, split });
       }
     });
+
+    const targets: Element[] = [];
+    const elementsToReveal: Element[] = [];
+    const lineTargets: Element[] = [];
+    const directTargets: Element[] = [];
+
+    entries.forEach(({ el, split }) => {
+      elementsToReveal.push(el);
+      if (split && split.lines) {
+        targets.push(...(split.lines as Element[]));
+        lineTargets.push(...(split.lines as Element[]));
+      } else {
+        targets.push(el);
+        directTargets.push(el);
+      }
+    });
+
+    gsap.set(lineTargets, { y: '200%', rotate: '4deg' });
+    gsap.set(directTargets, { y: '200%', rotate: '4deg' });
+    gsap.set(elementsToReveal, { visibility: 'visible' });
 
     tl.to(targets, {
       y: '0%',
