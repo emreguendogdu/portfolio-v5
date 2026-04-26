@@ -11,7 +11,6 @@ export const siteConfig = {
     'Freelance front-end developer specializing in React, Next.js, TypeScript, Figma, Shopify, and Webflow. Building landing pages, checkout flows, intake forms, and payment systems for currently DTC and telehealth brands.',
   url: PORTFOLIO_SITE_LINK,
   ogImage: `${PORTFOLIO_SITE_LINK}/images/pp.webp`,
-  twitterHandle: '@emregnd',
   locale: 'en_US',
   author: 'Emre Gundogdu',
   jobTitle: 'Freelance Front-End Developer',
@@ -98,12 +97,6 @@ export function constructMetadata({
       siteName: siteConfig.name,
       title: fullTitle,
       description: desc,
-    },
-    twitter: {
-      card: 'summary_large_image',
-      title: fullTitle,
-      description: desc,
-      creator: siteConfig.twitterHandle,
     },
   };
 }
