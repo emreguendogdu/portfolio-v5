@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { Analytics } from '@vercel/analytics/next';
 import './globals.css';
 import { PORTFOLIO_SITE_LINK, personSchema } from '@/lib/siteConfig';
 
@@ -19,6 +20,7 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(personSchema) }}
         />
+        <Analytics />
       </body>
     </html>
   );
