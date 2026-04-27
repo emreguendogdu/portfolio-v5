@@ -119,7 +119,7 @@ export default function Header({ className }: { className?: string }) {
     >
       <div className="flex gap-1.75 items-center">
         <p className="header-anim-item header-build text-muted hidden sm:block invisible">
-          Based in — <br />
+          Based in - <br />
           Istanbul, TR
         </p>
       </div>

@@ -85,7 +85,7 @@ export const Hero = () => {
 
           <p className="whitespace-nowrap">
             Luxury retreats on the Turkish Riviera, <br /> designed for
-            presence—not excess.
+            presence-not excess.
           </p>
         </div>
 

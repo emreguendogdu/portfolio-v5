@@ -59,7 +59,7 @@ export const Hero = () => {
         </p>
       </header>
 
-      {/* Pinned hero — content stays, image scrolls up over it */}
+      {/* Pinned hero - content stays, image scrolls up over it */}
       <div id="hero-pin" className="relative h-svh w-full overflow-hidden">
         {/* Content (heading + booking + thumbnails) */}
         <div className="relative z-10 flex flex-col items-center gap-[60px] w-full max-w-[1019px] mx-auto pt-[90px]">
@@ -121,7 +121,7 @@ export const Hero = () => {
           </div>
         </div>
 
-        {/* Hero Image — slides up from below to cover content on scroll */}
+        {/* Hero Image - slides up from below to cover content on scroll */}
         <div
           id="hero-image-wrap"
           className="absolute inset-0 z-20 will-change-transform"

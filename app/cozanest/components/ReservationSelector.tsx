@@ -97,7 +97,7 @@ export const ReservationSelector = () => {
 
   const datesSummary =
     checkIn && checkOut
-      ? `${formatDate(checkIn)} — ${formatDate(checkOut)}`
+      ? `${formatDate(checkIn)} - ${formatDate(checkOut)}`
       : "Select dates";
 
   const promoSummary =
@@ -122,7 +122,7 @@ export const ReservationSelector = () => {
           onClick={() => toggle("dates")}
           className={cn("reservation-field", active === "dates" && "is-active")}
         >
-          <span className="reservation-label">Check-in — Check-out</span>
+          <span className="reservation-label">Check-in - Check-out</span>
           <span className="reservation-value">{datesSummary}</span>
         </button>
 
@@ -236,7 +236,7 @@ export const ReservationSelector = () => {
               <div className="counter-row">
                 <div>
                   <p className="font-serif text-[18px] text-background">Children</p>
-                  <p className="counter-hint">Ages 0 — 15</p>
+                  <p className="counter-hint">Ages 0 - 15</p>
                 </div>
                 <Counter
                   value={children}

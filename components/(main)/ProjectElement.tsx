@@ -87,7 +87,7 @@ const ProjectElement = ({
         onMouseLeave={() => setHovered(false)}
         className={!!project.url ? 'cursor-pointer' : 'cursor-default'}
         target="_blank"
-        aria-label={`${project.title} — ${project.shortDescription}`}
+        aria-label={`${project.title} - ${project.shortDescription}`}
         onClick={(e) => {
           if (!project.url) {
             e.preventDefault();

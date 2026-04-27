@@ -93,7 +93,7 @@ export default function Hero() {
     >
       <div className="relative grid grid-cols-12 gap-2 sm:gap-6 z-10">
         <h1 className="sr-only">
-          Emre Gundogdu (Emre Gündoğdu) — Freelance Front-End Developer & Web
+          Emre Gundogdu (Emre Gündoğdu) - Freelance Front-End Developer & Web
           Design and Development Partner
         </h1>
 
@@ -159,7 +159,7 @@ export default function Hero() {
         <p className="hero-scroll invisible">Scroll</p>
         <div className="flex flex-col gap-2.5 sm:gap-5">
           <p className="hero-booking text-right invisible">
-            Booking Projects For — <br /> Q2' 2026
+            Booking Projects For - <br /> Q2' 2026
           </p>
           <div className="relative">
             <div className="relative w-full h-full overflow-hidden hero-cta-wrapper">

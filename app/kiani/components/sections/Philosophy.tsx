@@ -75,7 +75,7 @@ export default function Philosophy() {
           </span>
         </div>
 
-        {/* RIGHT COLUMN — EDITORIAL LIST */}
+        {/* RIGHT COLUMN - EDITORIAL LIST */}
         <div className="flex flex-col divide-y divide-black/10">
           {editorialListItems.map((text, i) => (
             <div

@@ -1,6 +1,6 @@
 import { renderOgImage, ogSize, ogContentType } from '@/lib/og';
 
-export const alt = 'CozaNest Tropical Resort — Case Study by Emre Gundogdu';
+export const alt = 'CozaNest Tropical Resort - Case Study by Emre Gundogdu';
 export const size = ogSize;
 export const contentType = ogContentType;
 

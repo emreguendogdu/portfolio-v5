@@ -79,7 +79,7 @@ export default function Footer() {
         </div>
 
         <div className="w-full flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 sm:gap-6 pt-6 border-t border-current/10">
-          <p>© {year} — Emre Gundogdu (Emre Gündoğdu)</p>
+          <p>© {year} - Emre Gundogdu (Emre Gündoğdu)</p>
           <p className="text-muted text-xs uppercase tracking-widest">
             Freelance Front-End Developer · Turkey
           </p>
