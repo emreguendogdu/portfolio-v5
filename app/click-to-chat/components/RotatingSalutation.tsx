@@ -46,7 +46,7 @@ export default function RotatingSalutation() {
 
         const next = (indexRef.current + 1) % SALUTATIONS.length;
 
-        // Exit — flow upward like water draining
+        // Exit - flow upward like water draining
         // No opacity here: the overflow:hidden container clips the text,
         // and dim-chrome CSS handles the visual level (GSAP opacity overrides CSS)
         gsap.to(spanRef.current, {
@@ -59,7 +59,7 @@ export default function RotatingSalutation() {
             setText(SALUTATIONS[next].text);
             setLang(SALUTATIONS[next].lang);
 
-            // Position below, then enter — water rising
+            // Position below, then enter - water rising
             gsap.fromTo(
               spanRef.current!,
               { yPercent: 120, skewY: -4 },

@@ -5,9 +5,9 @@ const PATH = '/click-to-chat';
 const PAGE_URL = `${PORTFOLIO_SITE_LINK}${PATH}`;
 
 const BRAND = 'WhatsApp Click To Chat';
-const TITLE = `${BRAND} — Free Link Generator`;
+const TITLE = `${BRAND} - Free Link Generator`;
 const DESCRIPTION =
-  'WhatsApp Click To Chat — free link generator. Start a WhatsApp conversation with any phone number without saving the contact. Supports every country code, works on web and mobile, no sign-up, no tracking.';
+  'WhatsApp Click To Chat - free link generator. Start a WhatsApp conversation with any phone number without saving the contact. Supports every country code, works on web and mobile, no sign-up, no tracking.';
 
 export const metadata = constructMetadata({
   title: TITLE,
@@ -31,7 +31,7 @@ export const metadata = constructMetadata({
 const FAQ = [
   {
     q: 'How do I send a WhatsApp message without saving the contact?',
-    a: 'Enter the country code and phone number above, then click "WhatsApp Web" or "Open App". WhatsApp opens a chat with that number directly — no need to add it to your contacts.',
+    a: 'Enter the country code and phone number above, then click "WhatsApp Web" or "Open App". WhatsApp opens a chat with that number directly - no need to add it to your contacts.',
   },
   {
     q: 'Is WhatsApp Click To Chat free?',

@@ -447,31 +447,25 @@ export default function ClickToChat() {
   const waWebUrl = `https://web.whatsapp.com/send?phone=${fullNumber}`;
   const waAppUrl = `https://wa.me/${fullNumber}`;
 
-  // Persist prefix + detect OS modifier key + sync theme from html
+  // Persist prefix + detect OS modifier key + sync theme from wrapper
   useEffect(() => {
     setMounted(true);
     const saved = localStorage.getItem('ctc_prefix');
     if (saved) setPrefix(saved);
     const isMac = /Mac|iPhone|iPad|iPod/.test(navigator.platform);
     setModKey(isMac ? '⌥' : 'Alt');
-    const initial = (document.documentElement.dataset.theme as 'light' | 'dark') || 'dark';
+    const wrap = containerRef.current?.closest('.ctc-scope') as HTMLElement | null;
+    const initial = (wrap?.dataset.theme as 'light' | 'dark') || 'dark';
     setTheme(initial);
-  }, []);
-
-  // Cleanup theme attr when leaving route
-  useEffect(() => {
-    return () => {
-      delete document.documentElement.dataset.theme;
-    };
   }, []);
 
   const toggleTheme = useCallback(() => {
     setTheme((t) => {
       const next = t === 'dark' ? 'light' : 'dark';
-      if (next === 'light') {
-        document.documentElement.dataset.theme = 'light';
-      } else {
-        delete document.documentElement.dataset.theme;
+      const wrap = containerRef.current?.closest('.ctc-scope') as HTMLElement | null;
+      if (wrap) {
+        if (next === 'light') wrap.dataset.theme = 'light';
+        else delete wrap.dataset.theme;
       }
       try { localStorage.setItem('ctc_theme', next); } catch {}
       return next;
@@ -628,19 +622,14 @@ export default function ClickToChat() {
             EMREGND
           </Link>
 
-          <span className="hidden sm:block absolute left-1/2 -translate-x-1/2 dim-chrome">
-            Open Source
-          </span>
-
           <div className="flex items-center gap-3 sm:gap-4">
-            <ThemeToggle theme={theme} onToggle={toggleTheme} />
             <RotatingSalutation />
           </div>
         </nav>
 
         {/* Content */}
         <div className="flex-1 flex flex-col justify-center gap-4 sm:gap-5 py-6 sm:py-8">
-          {/* Eyebrow tag — primary keyword for SEO/GEO */}
+          {/* Eyebrow tag - primary keyword for SEO/GEO */}
           <span id="ctc-eyebrow" className="ctc-eyebrow" aria-hidden="true">
             <span className="ctc-eyebrow-dot" />
             WhatsApp
@@ -757,7 +746,7 @@ export default function ClickToChat() {
               onClick={handleCopy}
               disabled={!isValid}
               className={cn('action-btn', !isValid && 'action-btn-disabled')}
-              aria-label={`Copy WhatsApp link — shortcut: ${modKey} + ${SHORTCUTS.copy}`}
+              aria-label={`Copy WhatsApp link - shortcut: ${modKey} + ${SHORTCUTS.copy}`}
             >
               <span className="flex items-center gap-2">
                 {copied ? 'Copied ✓' : 'Copy Link'}
@@ -773,13 +762,13 @@ export default function ClickToChat() {
           id="ctc-footer"
           className="flex items-center justify-between w-full py-4 sm:py-6 dim-chrome"
         >
-          <span>No account required</span>
-          <span className="hidden sm:block">No cookies · No tracking</span>
-          <span>© 2026</span>
+          <span>Open Source</span>
+          <span className="hidden sm:block">© 2026</span>
+          <ThemeToggle theme={theme} onToggle={toggleTheme} />
         </footer>
       </main>
 
-      {/* Dropdown portal — fixed so it never affects layout */}
+      {/* Dropdown portal - fixed so it never affects layout */}
       <CountryDropdown
         open={dropdownOpen}
         onClose={() => setDropdownOpen(false)}
@@ -826,7 +815,7 @@ function ActionButton({
       target="_blank"
       rel="noopener noreferrer"
       className="action-btn"
-      aria-label={`${label} — shortcut: ${shortcut}`}
+      aria-label={`${label} - shortcut: ${shortcut}`}
     >
       {inner}
     </a>

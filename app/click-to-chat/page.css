@@ -1,17 +1,27 @@
 @import "tailwindcss";
 
-:root {
+.ctc-scope {
   --color-background: #0d0d0d;
   --color-foreground: #f1efec;
-  --dim: 0.85;          /* secondary text, ≥ 4.5:1 both themes */
-  --dim-chrome: 0.7;    /* tertiary chrome text, ≥ 4.5:1 both themes */
+  --dim: 0.85;
+  --dim-chrome: 0.7;
   --tone: 100%;
   --surface-overlay: oklch(10% 0 0 / 88%);
-  --border-ui: oklch(100% 0 0 / 40%);     /* essential UI ≥ 3:1 */
-  --border-input: oklch(100% 0 0 / 40%);  /* input boundary ≥ 3:1 */
+  --border-ui: oklch(100% 0 0 / 40%);
+  --border-input: oklch(100% 0 0 / 40%);
+
+  background: var(--color-background);
+  color: var(--color-foreground);
+  font-family: var(--font-object-sans), sans-serif;
+  text-transform: uppercase;
+  letter-spacing: -0.01em;
+  font-size: clamp(0.7rem, 0.9vw + 0.4rem, 0.9rem);
+  line-height: 110%;
+  min-height: 100svh;
+  transition: background 0.3s ease, color 0.3s ease;
 }
 
-:root[data-theme="light"] {
+.ctc-scope[data-theme="light"] {
   --color-background: #f1efec;
   --color-foreground: #161819;
   --tone: 0%;
@@ -27,32 +37,13 @@
   --font-display: var(--font-neue-montreal);
 }
 
-html {
-  background-color: var(--color-background);
-  transition: background-color 0.3s ease;
-}
-
-body {
-  transition: background 0.3s ease, color 0.3s ease;
-}
-
-body {
-  background: var(--color-background);
-  color: var(--color-foreground);
-  font-family: var(--font-object-sans), sans-serif;
-  text-transform: uppercase;
-  letter-spacing: -0.01em;
-  font-size: clamp(0.7rem, 0.9vw + 0.4rem, 0.9rem);
-  line-height: 110%;
-}
-
 @layer components {
-  /* Content dim — readable secondary text */
+  /* Content dim - readable secondary text */
   .dim {
     opacity: var(--dim);
   }
 
-  /* Chrome dim — nav/footer chrome */
+  /* Chrome dim - nav/footer chrome */
   .dim-chrome {
     opacity: var(--dim-chrome);
   }
@@ -65,7 +56,7 @@ body {
     letter-spacing: -0.05em;
   }
 
-  /* WhatsApp eyebrow chip — small primary-keyword tag above title */
+  /* WhatsApp eyebrow chip - small primary-keyword tag above title */
   .ctc-eyebrow {
     display: inline-flex;
     align-items: center;
