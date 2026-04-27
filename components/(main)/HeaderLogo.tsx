@@ -132,12 +132,12 @@ export default function HeaderLogo({ className }: { className?: string }) {
     >
       <span className="sr-only">Emre Gundogdu</span>
       <div className="relative" aria-hidden="true">
-        <div ref={textTopRef} className="whitespace-nowrap normal-case">
+        <div ref={textTopRef} className="whitespace-nowrap uppercase">
           Emre Gundogdu
         </div>
         <div
           ref={textBottomRef}
-          className="absolute inset-0 whitespace-nowrap normal-case"
+          className="absolute inset-0 whitespace-nowrap uppercase"
         >
           Emre Gundogdu
         </div>
