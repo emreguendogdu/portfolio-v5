@@ -17,6 +17,7 @@ const socialLinks = [
   { label: 'Dribbble', href: 'https://dribbble.com/emregnd/' },
   { label: 'Github', href: 'https://github.com/emreguendogdu/' },
   { label: 'Instagram', href: 'https://instagram.com/emregnd/' },
+  { label: 'Upwork', href: 'http://upwork.com/freelancers/emregnd' },
 ];
 
 type FooterColumnProps = {
