@@ -58,6 +58,14 @@ export default function Footer() {
         id="footer-center"
         className="flex flex-col gap-10 items-center justify-center"
       >
+        <div className="flex items-center gap-2.5 text-xs uppercase tracking-widest text-muted">
+          <span className="relative flex h-1.5 w-1.5" aria-hidden>
+            <span className="absolute inline-flex h-full w-full rounded-full bg-foreground opacity-40 animate-ping" />
+            <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-foreground" />
+          </span>
+          <span>Available — Booking Q2 2026</span>
+        </div>
+
         <AnimatedText>
           <h2 className="text-center">
             Let's turn your website into <br />
@@ -70,6 +78,11 @@ export default function Footer() {
           type="big"
           href="https://cal.com/emregnd/inquiry"
         />
+
+        <p className="text-muted text-center max-w-md">
+          30-minute call. Fixed quote within 48 hours. No pressure, no
+          templates, no recurring &ldquo;synergy&rdquo; emails.
+        </p>
       </div>
 
       <div className="w-full flex flex-col gap-12">
