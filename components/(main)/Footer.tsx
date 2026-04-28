@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { siteConfig } from '@/lib/siteConfig';
 import CtaButton from './ui/CtaButton';
 import AnimatedText from './ui/AnimatedText';
 
@@ -63,7 +64,7 @@ export default function Footer() {
             <span className="absolute inline-flex h-full w-full rounded-full bg-foreground opacity-40 animate-ping" />
             <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-foreground" />
           </span>
-          <span>Available — Booking Q2 2026</span>
+          <span>Available — Booking {siteConfig.bookingQuarter}</span>
         </div>
 
         <AnimatedText>

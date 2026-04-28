@@ -5,6 +5,7 @@ import gsap from 'gsap';
 import { SplitText } from 'gsap/SplitText';
 import CtaButton from './ui/CtaButton';
 import Image from 'next/image';
+import { siteConfig } from '@/lib/siteConfig';
 
 gsap.registerPlugin(SplitText);
 
@@ -159,7 +160,7 @@ export default function Hero() {
         <p className="hero-scroll invisible">Scroll</p>
         <div className="flex flex-col gap-2.5 sm:gap-5">
           <p className="hero-booking text-right invisible">
-            Booking Projects For - <br /> Q2' 2026
+            Booking Projects For - <br /> {siteConfig.bookingQuarter}
           </p>
           <div className="relative">
             <div className="relative w-full h-full overflow-hidden hero-cta-wrapper">

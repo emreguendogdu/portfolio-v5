@@ -14,6 +14,7 @@ export const siteConfig = {
   locale: 'en_US',
   author: 'Emre Gundogdu',
   jobTitle: 'Freelance Front-End Developer',
+  bookingQuarter: 'Q2 2026',
 };
 
 export const personSchema = {

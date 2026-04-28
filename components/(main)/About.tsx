@@ -1,3 +1,4 @@
+import { siteConfig } from '@/lib/siteConfig';
 import AnimatedText from './ui/AnimatedText';
 
 type AsideGroup = {
@@ -27,7 +28,7 @@ const metaGroups: AsideGroup[] = [
   },
   {
     title: 'Booking',
-    items: ['Q2 2026'],
+    items: [siteConfig.bookingQuarter],
   },
 ];
 
