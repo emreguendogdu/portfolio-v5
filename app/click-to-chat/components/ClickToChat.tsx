@@ -729,30 +729,39 @@ export default function ClickToChat() {
           <div id="ctc-divider-2" className="ctc-divider" />
 
           {/* Actions */}
-          <div id="ctc-actions" className="flex flex-col sm:flex-row gap-3">
+          <div id="ctc-actions" className="flex flex-row gap-3">
             <ActionButton
               href={waWebUrl}
               disabled={!isValid}
               label="WhatsApp Web"
               shortcut={`${modKey} + ${SHORTCUTS.web}`}
+              className="hidden sm:flex"
             />
             <ActionButton
               href={waAppUrl}
               disabled={!isValid}
-              label="Open App"
+              label="Continue on WhatsApp"
               shortcut={`${modKey} + ${SHORTCUTS.app}`}
+              variant="primary"
             />
             <button
               onClick={handleCopy}
               disabled={!isValid}
-              className={cn('action-btn', !isValid && 'action-btn-disabled')}
+              className={cn('action-btn-icon', !isValid && 'action-btn-disabled')}
               aria-label={`Copy WhatsApp link - shortcut: ${modKey} + ${SHORTCUTS.copy}`}
+              title={copied ? 'Copied' : 'Copy link'}
+              type="button"
             >
-              <span className="flex items-center gap-2">
-                {copied ? 'Copied ✓' : 'Copy Link'}
-                <kbd className="dim text-[0.75em]">({modKey} + {SHORTCUTS.copy})</kbd>
-              </span>
-              <span aria-hidden>↗</span>
+              {copied ? (
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+                  <polyline points="20 6 9 17 4 12" />
+                </svg>
+              ) : (
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+                  <rect x="9" y="9" width="13" height="13" rx="2" ry="2" />
+                  <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
+                </svg>
+              )}
             </button>
           </div>
         </div>
@@ -785,25 +794,35 @@ function ActionButton({
   disabled,
   label,
   shortcut,
+  className,
+  variant,
 }: {
   href: string;
   disabled: boolean;
   label: string;
   shortcut: string;
+  className?: string;
+  variant?: 'primary';
 }) {
   const inner = (
     <>
       <span className="flex items-center gap-2">
         {label}
-        <kbd className="dim text-[0.75em]">({shortcut})</kbd>
+        <kbd className="dim text-[0.75em] hidden sm:inline">({shortcut})</kbd>
       </span>
       <span aria-hidden>↗</span>
     </>
   );
 
+  const btnClass = cn(
+    'action-btn',
+    variant === 'primary' && 'action-btn-primary',
+    className,
+  );
+
   if (disabled) {
     return (
-      <span className="action-btn action-btn-disabled" aria-disabled>
+      <span className={cn(btnClass, 'action-btn-disabled')} aria-disabled>
         {inner}
       </span>
     );
@@ -814,7 +833,7 @@ function ActionButton({
       href={href}
       target="_blank"
       rel="noopener noreferrer"
-      className="action-btn"
+      className={btnClass}
       aria-label={`${label} - shortcut: ${shortcut}`}
     >
       {inner}
