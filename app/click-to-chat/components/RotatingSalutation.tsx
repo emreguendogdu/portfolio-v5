@@ -26,7 +26,7 @@ const SALUTATIONS = [
   { text: 'Hei',        lang: 'no' }, // Norwegian
 ];
 
-const INTERVAL = 2600; // ms between cycles
+const INTERVAL = 1800; // ms between cycles
 const EXIT_DURATION = 0.38;
 const ENTER_DURATION = 0.55;
 
@@ -77,7 +77,7 @@ export default function RotatingSalutation() {
 
       const timer = setInterval(cycle, INTERVAL);
       return () => clearInterval(timer);
-    }, 2200); // let the page entrance animation play first
+    }, 1000); // let the page entrance animation play first
 
     return () => clearTimeout(startDelay);
   }, []);
